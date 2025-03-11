@@ -55,6 +55,52 @@ This repository includes a DevContainer configuration for VS Code and GitHub Cod
    uv run marimo run app.py
    ```
 
+### Docker Deployment
+
+This application uses Marimo's official Docker container, making deployment simple and reliable:
+
+#### Using Docker Compose (Recommended)
+```bash
+# Build and start the container
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+```
+
+#### Using Docker Directly
+```bash
+# Build the Docker image
+docker build -t legal-prompting-app .
+
+# Run the container
+docker run -p 8080:8080 legal-prompting-app
+```
+
+#### Using GitHub Container Registry
+After pushing to GitHub, the application is automatically built and published to GitHub Container Registry:
+
+```bash
+# Pull the latest image
+docker pull ghcr.io/arthrod/prompting:main
+
+# Run the container
+docker run -p 8080:8080 ghcr.io/arthrod/prompting:main
+```
+
+Access the application at http://localhost:8080 after deployment.
+
+#### Development with Docker
+
+For development with live code changes, use the volume mount in docker-compose.yml:
+
+```bash
+# Start the container with mounted volumes
+docker-compose up -d
+
+# Make changes to your local files and they'll be reflected in the running app
+```
+
 ## Development
 
 ### Project Structure
@@ -62,6 +108,8 @@ This repository includes a DevContainer configuration for VS Code and GitHub Cod
 - `app.py`: Main application file with all cells defining the interactive UI
 - `layouts/app.slides.json`: Layout definition for the UI
 - `custom.css`: Custom styling for the application
+- `Dockerfile`: Uses Marimo's official container as a base
+- `docker-compose.yml`: Multi-container Docker configuration with development support
 
 ### Dependencies
 

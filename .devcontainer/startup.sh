@@ -36,6 +36,8 @@ fi
 
 # Make sure layouts directory exists
 mkdir -p prompting/layouts
+# Create a data directory for Docker volume mounting
+mkdir -p data
 
 # Create a .cursorrules file if it doesn't exist
 if [ ! -f ".cursorrules" ]; then
@@ -55,6 +57,11 @@ command:uv run marimo run $FILE
 # TOML rules
 glob:**/*.toml
 format:true
+
+# Docker rules
+glob:Dockerfile
+glob:docker-compose.yml
+format:true
 EOL
     echo "Created .cursorrules file"
 fi
@@ -65,9 +72,16 @@ if [ -z "$(git config --global user.email)" ]; then
     git config --global user.name "Arthur Souza Rodrigues"
 fi
 
+# Check for Docker and install if needed
+if ! command -v docker &> /dev/null; then
+    echo "Docker not found. If you plan to use Docker for deployment, please install it manually."
+    echo "Visit https://docs.docker.com/get-docker/ for installation instructions."
+fi
+
 # Setup pre-commit if applicable
 if [ -f ".pre-commit-config.yaml" ]; then
     uv run pre-commit install
 fi
 
 echo "Setup complete! You can now run the app with: uv run marimo run app.py"
+echo "For Docker deployment, use: docker-compose up -d"

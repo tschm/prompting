@@ -40,6 +40,11 @@ jobs:
             type=ref,event=branch
             type=ref,event=pr
             type=sha
+          labels: |
+            org.opencontainers.image.title=Legal Prompting Techniques App
+            org.opencontainers.image.description=Interactive application for learning legal-focused LLM prompting techniques
+            org.opencontainers.image.vendor=Arthur Souza Rodrigues
+            org.opencontainers.image.base.name=ghcr.io/marimo-team/marimo:latest
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
