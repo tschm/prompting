@@ -37,8 +37,8 @@ You can run the application in several ways:
 # Create a virtual environment
 uv venv
 
-# Install dependencies
-uv pip install -e ".[dev]"
+# Install dependencies (synchronize all packages from pyproject.toml)
+uv sync --all-packages
 
 # Run the application
 uv run marimo run app.py
@@ -90,6 +90,8 @@ docker run -p 8080:8080 ghcr.io/arthrod/prompting:main
 
 Access the application at http://localhost:8080 after deployment.
 
+> **Note:** The port exposure (`-p 8080:8080` or the `ports` section in docker-compose.yml) is necessary for browser access to the application. The container internally runs on port 8080, and this mapping makes it accessible at the same port on your host machine.
+
 #### Development with Docker
 
 For development with live code changes, use the volume mount in docker-compose.yml:
@@ -118,6 +120,8 @@ This project requires:
 - Marimo 0.11.17+
 - HTTPX for API communication
 - Various libraries for data visualization and manipulation
+
+All dependencies are managed through `pyproject.toml` and installed using `uv sync --all-packages`.
 
 ## Roadmap
 

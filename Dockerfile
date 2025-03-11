@@ -2,11 +2,14 @@ FROM ghcr.io/marimo-team/marimo:latest
 
 WORKDIR /app
 
+# Install uv for better dependency management
+RUN pip install -U uv
+
 # Copy project files
 COPY . .
 
-# Install project dependencies using uv
-RUN pip install -e ".[dev]"
+# Install project dependencies using uv sync
+RUN uv sync --all-packages
 
 # Create necessary directories
 RUN mkdir -p prompting/layouts data

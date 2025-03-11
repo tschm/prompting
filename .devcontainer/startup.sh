@@ -4,7 +4,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Create virtual environment and install dependencies
 uv venv
-uv pip install --no-cache-dir -e ".[dev]"
+uv sync --all-packages
 
 # Create MIT License file if it doesn't exist
 if [ ! -f "LICENSE" ]; then

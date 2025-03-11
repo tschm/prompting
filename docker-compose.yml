@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "8080:8080"  # Map container port 8080 to host port 8080 (necessary for browser access)
     environment:
       - PYTHONUNBUFFERED=1
       - MARIMO_NO_ANALYTICS=1  # Disable usage analytics
