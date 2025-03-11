@@ -11,7 +11,7 @@ if [ ! -f "LICENSE" ]; then
     cat > LICENSE << 'EOL'
 MIT License
 
-Copyright (c) 2024 The Authors
+Copyright (c) 2024 Arthur Souza Rodrigues
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -36,6 +36,34 @@ fi
 
 # Make sure layouts directory exists
 mkdir -p prompting/layouts
+
+# Create a .cursorrules file if it doesn't exist
+if [ ! -f ".cursorrules" ]; then
+    cat > .cursorrules << 'EOL'
+# Cursor rules for Prompting Techniques App
+# Maintained by Arthur Souza Rodrigues (arthrod@umich.edu)
+
+# Python rules
+glob:**/*.py
+command:uv run ruff check --fix $FILE
+command:uv run ruff format $FILE
+
+# Marimo specific rules
+glob:prompting/app.py
+command:uv run marimo run $FILE
+
+# TOML rules
+glob:**/*.toml
+format:true
+EOL
+    echo "Created .cursorrules file"
+fi
+
+# Setup git config if needed
+if [ -z "$(git config --global user.email)" ]; then
+    git config --global user.email "arthrod@umich.edu"
+    git config --global user.name "Arthur Souza Rodrigues"
+fi
 
 # Setup pre-commit if applicable
 if [ -f ".pre-commit-config.yaml" ]; then

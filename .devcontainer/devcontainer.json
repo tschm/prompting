@@ -5,7 +5,8 @@
         "cpus": 4
     },
     "features": {
-        "ghcr.io/devcontainers/features/common-utils:2": {}
+        "ghcr.io/devcontainers/features/common-utils:2": {},
+        "ghcr.io/devcontainers/features/git:1": {}
     },
     "forwardPorts": [8080],
     "customizations": {
@@ -21,17 +22,26 @@
                 "python.testing.pytestArgs": ["."],
                 "python.terminal.activateEnvInCurrentTerminal": true,
                 "marimo.pythonPath": ".venv/bin/python",
-                "marimo.marimoPath": ".venv/bin/marimo"
+                "marimo.marimoPath": ".venv/bin/marimo",
+                "git.enableSmartCommit": true,
+                "git.confirmSync": false,
+                "editor.formatOnSave": true,
+                "editor.codeActionsOnSave": {
+                    "source.organizeImports": true,
+                    "source.fixAll": true
+                }
             },
             "extensions": [
                 "ms-python.python",
                 "ms-python.vscode-pylance",
                 "charliermarsh.ruff",
-                "marimo-team.vscode-marimo"
+                "marimo-team.vscode-marimo",
+                "github.vscode-github-actions",
+                "tamasfe.even-better-toml"
             ]
         }
     },
     "onCreateCommand": ".devcontainer/startup.sh",
-    "postStartCommand": "uv run marimo run app.py --host=localhost --port=8080",
+    "postStartCommand": "uv run marimo run app.py --host=0.0.0.0 --port=8080",
     "remoteUser": "vscode"
 }

@@ -4,6 +4,9 @@ version = "0.1.0"
 description = "Interactive application for learning LLM prompting techniques"
 readme = "README.md"
 license = {text = "MIT"}
+authors = [
+    {name = "Arthur Souza Rodrigues", email = "arthrod@umich.edu"},
+]
 requires-python = ">=3.12"
 dependencies = [
     "clarabel==0.10.0",
@@ -23,6 +26,10 @@ dev = [
     "pytest>=8.0.0",
     "pytest-cov>=5.0.0",
 ]
+
+[project.urls]
+"Homepage" = "https://github.com/arthrod/prompting"
+"Bug Tracker" = "https://github.com/arthrod/prompting/issues"
 
 [tool.ruff]
 line-length = 100

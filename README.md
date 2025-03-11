@@ -2,7 +2,7 @@
 
 An interactive application to learn and practice effective prompting techniques for Large Language Models.
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/tschm/marimo_dev)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/arthrod/prompting)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## About
@@ -25,7 +25,7 @@ You can run the application in several ways:
 uv venv
 
 # Install dependencies
-uv pip install -r requirements.txt
+uv pip install -e ".[dev]"
 
 # Run the application
 uv run marimo run app.py
@@ -57,6 +57,10 @@ This project requires:
 - Marimo 0.11.17+
 - HTTPX for API communication
 - Various libraries for data visualization and manipulation
+
+## Author
+
+- Arthur Souza Rodrigues (arthrod@umich.edu)
 
 ## License
 
