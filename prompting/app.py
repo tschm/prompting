@@ -10,13 +10,13 @@ def _():
     import json
     import os
     from typing import Any, Optional
-    from dotenv import filedotenv
+    from dotenv import load_dotenv
     import httpx
     import marimo as mo
-    filedotenv()
+    load_dotenv()
     # We'll keep a response cache to avoid regenerating the same prompts:
     response_cache = {}
-    return Any, Optional, filedotenv, httpx, json, mo, os, response_cache
+    return Any, Optional, httpx, json, load_dotenv, mo, os, response_cache
 
 
 @app.cell
