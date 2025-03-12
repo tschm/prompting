@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.11.9"
+__generated_with = "0.11.17"
 app = marimo.App(layout_file="layouts/app.slides.json", css_file="custom.css")
 
 
@@ -10,13 +10,13 @@ def _():
     import json
     import os
     from typing import Any, Optional
-
+    from dotenv import filedotenv
     import httpx
     import marimo as mo
-
+    filedotenv()
     # We'll keep a response cache to avoid regenerating the same prompts:
     response_cache = {}
-    return Any, Optional, httpx, json, mo, os, response_cache
+    return Any, Optional, filedotenv, httpx, json, mo, os, response_cache
 
 
 @app.cell
