@@ -13,6 +13,7 @@ def _():
     from dotenv import load_dotenv
     import httpx
     import marimo as mo
+
     load_dotenv()
     # We'll keep a response cache to avoid regenerating the same prompts:
     response_cache = {}
@@ -111,62 +112,6 @@ def _(Optional, httpx, json, os):
                 return f'Unexpected response format: {str(e)}'
             except Exception as e:
                 return f'Unexpected error: {str(e)}'
-
-
-    # Example usage in a Marimo notebook:
-    #
-    # # Method 1: Using our custom client
-    # import os
-    # os.environ["OPENAI_API_KEY"] = "your-api-key-here"  # Set this securely
-    #
-    # client = DirectLLMClient(provider="openai")
-    # response = client.generate(
-    #     prompt="Explain how to use pandas for time series analysis",
-    #     system_message="You are a data science expert."
-    # )
-    #
-    # display_response("Explain how to use pandas for time series analysis", response)
-    #
-    # # Method 2: An even simpler fallback using Python's built-in libraries
-    # def simple_openai_request(prompt, system_message="You are a helpful assistant."):
-    #     """Ultra-simple OpenAI request using just the standard library."""
-    #     import os
-    #     import json
-    #     import urllib.request
-    #
-    #     api_key = os.environ.get("OPENAI_API_KEY")
-    #     if not api_key:
-    #         return "Error: OPENAI_API_KEY environment variable not set"
-    #
-    #     url = "https://api.openai.com/v1/chat/completions"
-    #     headers = {
-    #         "Content-Type": "application/json",
-    #         "Authorization": f"Bearer {api_key}"
-    #     }
-    #     data = {
-    #         "model": "gpt-3.5-turbo",
-    #         "messages": [
-    #             {"role": "system", "content": system_message},
-    #             {"role": "user", "content": prompt}
-    #         ],
-    #         "temperature": 0.7
-    #     }
-    #
-    #     # Create the request
-    #     request = urllib.request.Request(
-    #         url,
-    #         data=json.dumps(data).encode('utf-8'),
-    #         headers=headers,
-    #         method="POST"
-    #     )
-    #
-    #     try:
-    #         # Send the request and get the response
-    #         with urllib.request.urlopen(request) as response:
-    #             response_data = json.loads(response.read().decode('utf-8'))
-    #             return response_data["choices"][0]["message"]["content"]
-    #     except Exception as e:
-    #         return f"Error: {str(e)}"
     return (DirectLLMClient,)
 
 
