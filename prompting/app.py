@@ -1,7 +1,7 @@
 import marimo
 
-__generated_with = '0.11.17'
-app = marimo.App(layout_file='layouts/app.slides.json', css_file='custom.css')
+__generated_with = "0.11.9"
+app = marimo.App(layout_file="layouts/app.slides.json", css_file="custom.css")
 
 
 @app.cell(hide_code=True)
@@ -16,7 +16,7 @@ def _():
 
     # We'll keep a response cache to avoid regenerating the same prompts:
     response_cache = {}
-    return Any, dict, list, Optional, httpx, json, mo, os, response_cache
+    return Any, Optional, httpx, json, mo, os, response_cache
 
 
 @app.cell
@@ -36,15 +36,10 @@ def _(Optional, httpx, json, os):
 
             # Set up headers and endpoints based on provider
             if self.provider == 'openai':
-                self.api_key = (
-                    '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'
-                )
+                self.api_key = os.environ.get('OPENROUTER_API_KEY')
                 if not self.api_key:
-                    raise ValueError('OPENAI_API_KEY environment variable not set')
-                self.headers = {
-                    'Content-Type': 'application/json',
-                    'Authorization': f'Bearer {self.api_key}',
-                }
+                    raise ValueError('OPENROUTER_API_KEY environment variable not set')
+                self.headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {self.api_key}'}
                 self.endpoint = 'https://openrouter.ai/api/v1/chat/completions'
                 self.default_model = 'openai/gpt-4o-mini'
 
@@ -52,11 +47,7 @@ def _(Optional, httpx, json, os):
                 self.api_key = os.environ.get('ANTHROPIC_API_KEY')
                 if not self.api_key:
                     raise ValueError('ANTHROPIC_API_KEY environment variable not set')
-                self.headers = {
-                    'Content-Type': 'application/json',
-                    'x-api-key': self.api_key,
-                    'anthropic-version': '2023-06-01',
-                }
+                self.headers = {'Content-Type': 'application/json', 'x-api-key': self.api_key, 'anthropic-version': '2023-06-01'}
                 self.endpoint = 'https://api.anthropic.com/v1/messages'
                 self.default_model = 'claude-3-haiku-20240307'
 
@@ -64,11 +55,7 @@ def _(Optional, httpx, json, os):
                 raise ValueError(f'Unsupported provider: {provider}')
 
         def generate(
-            self,
-            prompt: str,
-            system_message: str = 'You are a helpful assistant.',
-            model: Optional[str] = None,
-            temperature: float = 0.7,
+            self, prompt: str, system_message: str = 'You are a helpful assistant.', model: Optional[str] = None, temperature: float = 0.7
         ) -> str:
             """
             Generate a response from the LLM.
@@ -88,10 +75,7 @@ def _(Optional, httpx, json, os):
                 if self.provider == 'openai':
                     payload = {
                         'model': model,
-                        'messages': [
-                            {'role': 'system', 'content': system_message},
-                            {'role': 'user', 'content': prompt},
-                        ],
+                        'messages': [{'role': 'system', 'content': system_message}, {'role': 'user', 'content': prompt}],
                         'temperature': temperature,
                     }
 
@@ -127,6 +111,7 @@ def _(Optional, httpx, json, os):
                 return f'Unexpected response format: {str(e)}'
             except Exception as e:
                 return f'Unexpected error: {str(e)}'
+
 
     # Example usage in a Marimo notebook:
     #
@@ -203,7 +188,6 @@ def _(language_is_english):
     def get_current_language():
         """Returns 'en' if language switch is set to English, otherwise 'pt'."""
         return 'en' if language_is_english.value else 'pt'
-
     return (get_current_language,)
 
 
@@ -214,10 +198,7 @@ def _():
         'language_toggle': {'en': 'Language', 'pt': 'Idioma'},
         'english': {'en': 'English', 'pt': 'Inglês'},
         'portuguese': {'en': 'Portuguese', 'pt': 'Português'},
-        'welcome_title': {
-            'en': 'Prompting Techniques Interactive Exercises',
-            'pt': 'Exercícios Interativos de Técnicas de Prompt',
-        },
+        'welcome_title': {'en': 'Prompting Techniques Interactive Exercises', 'pt': 'Exercícios Interativos de Técnicas de Prompt'},
         'welcome_description': {
             'en': "This notebook demonstrates prompting techniques using Marimo and Anthropic's Claude model.",
             'pt': 'Este notebook demonstra técnicas de prompt usando Marimo e o modelo Claude da Anthropic.',
@@ -240,18 +221,9 @@ def _():
         'inject_good_prompt': {'en': 'Use Good Prompt', 'pt': 'Usar Prompt Bom'},
         'send_prompt': {'en': 'Send Prompt', 'pt': 'Enviar Prompt'},
         'table_of_contents': {'en': 'Table of Contents', 'pt': 'Índice'},
-        'using_api_key': {
-            'en': '✓ Using Anthropic API key from environment',
-            'pt': '✓ Usando chave de API da Anthropic do ambiente',
-        },
-        'enter_api_key': {
-            'en': 'Enter your Anthropic API key',
-            'pt': 'Digite sua chave de API da Anthropic',
-        },
-        'api_key_placeholder': {
-            'en': 'Enter your API key here',
-            'pt': 'Digite sua chave de API aqui',
-        },
+        'using_api_key': {'en': '✓ Using Anthropic API key from environment', 'pt': '✓ Usando chave de API da Anthropic do ambiente'},
+        'enter_api_key': {'en': 'Enter your Anthropic API key', 'pt': 'Digite sua chave de API da Anthropic'},
+        'api_key_placeholder': {'en': 'Enter your API key here', 'pt': 'Digite sua chave de API aqui'},
     }
     return (translations,)
 
@@ -269,6 +241,7 @@ def _(mo):
         </div>
         """
     )
+    return
 
 
 @app.cell
@@ -312,16 +285,14 @@ def _(mo):
         </div>
         """
     )
+    return
 
 
 @app.cell(hide_code=True)
 def _():
     # Cell 7: Technique Data
     technique1_slug = 'persona'
-    technique1_name = {
-        'en': 'Role-Based Prompting (Persona Priming)',
-        'pt': 'Prompting Baseado em Papéis (Preparação de Persona)',
-    }
+    technique1_name = {'en': 'Role-Based Prompting (Persona Priming)', 'pt': 'Prompting Baseado em Papéis (Preparação de Persona)'}
     technique1_description = {
         'en': 'Role-based prompting involves explicitly assigning the AI a specific role or persona relevant to the task. For example, you might begin a prompt with "You are an experienced contracts attorney…" or "Act as a judge writing an opinion…". This primes the model to adopt the perspective, knowledge, and tone of that role. It can also include defining the audience or viewpoint (e.g. "explain like I\'m a client" vs. "write as a legal scholar"). By setting a persona, the prompt guides the LLM to produce answers aligned with that expertise or viewpoint.',
         'pt': 'O prompting baseado em papéis envolve atribuir explicitamente à IA um papel ou persona específica relevante para a tarefa. Por exemplo, você pode começar um prompt com "Você é um advogado experiente em contratos..." ou "Atue como um juiz escrevendo uma opinião...". Isso prepara o modelo para adotar a perspectiva, conhecimento e tom desse papel. Também pode incluir a definição do público ou ponto de vista (ex: "explique como se eu fosse um cliente" vs. "escreva como um estudioso do direito"). Ao definir uma persona, o prompt orienta o LLM a produzir respostas alinhadas com essa expertise ou ponto de vista.',
@@ -346,10 +317,7 @@ def _():
         'en': 'By assigning the AI the role of a "seasoned contracts attorney," the model focuses on providing legally sound advice about contract breaches. The prompt also specifies the audience (a business executive), which guides the AI to use "plain language" while still covering technical legal concepts like breach notices and UCC remedies. The resulting response is likely to include structured legal steps, appropriate citations to relevant law, and practical advice—all delivered in the professional tone of an attorney advising a client. Without this role priming, the response might lack legal specificity or fail to address formal remedies available under contract law.',
         'pt': 'Ao atribuir à IA o papel de um "advogado experiente em contratos", o modelo se concentra em fornecer orientações juridicamente sólidas sobre violações contratuais. O prompt também especifica o público (um executivo de negócios), o que orienta a IA a usar "linguagem simples" enquanto ainda aborda conceitos jurídicos técnicos como notificações de violação e remédios previstos em lei comercial. A resposta resultante provavelmente incluirá etapas legais estruturadas, citações apropriadas à legislação relevante e conselhos práticos—tudo entregue no tom profissional de um advogado orientando um cliente. Sem essa preparação de papel, a resposta poderia carecer de especificidade jurídica ou deixar de abordar os remédios formais disponíveis sob a lei contratual.',
     }
-    technique1_resource_title = {
-        'en': 'GenAI Prompting Tips for Lawyers',
-        'pt': 'Dicas de Prompting com IA Generativa para Advogados',
-    }
+    technique1_resource_title = {'en': 'GenAI Prompting Tips for Lawyers', 'pt': 'Dicas de Prompting com IA Generativa para Advogados'}
     technique1_resource_url = 'https://cl.cobar.org/departments/genai-prompting-tips-for-lawyers/'
     technique1_resource_description = {
         'en': 'Comprehensive guide on effective prompting techniques for legal professionals',
@@ -386,10 +354,7 @@ def _():
         'en': "Context is a primary driver of LLM performance. Extensive user research shows that specific context helps the LLM identify the correct laws, facts, and analysis to apply. When the LLM has access to relevant law and facts, the model grounds its analysis in the proper legal framework and avoids introducing irrelevant factors. This leads to answers that address the actual issue at hand, rather than defaulting to generic statements about the law. Providing geographical context (e.g., jurisdiction) is particularly important, as laws vary significantly between states and countries. Even if LLMs know the law in theory, they're more likely to default to general interpretations without specific context.",
         'pt': 'O contexto é um fator primordial para o desempenho do LLM. Pesquisas extensivas com usuários mostram que um contexto específico ajuda o LLM a identificar as leis, fatos e análises corretas a serem aplicadas. Quando o LLM tem acesso à legislação e fatos relevantes, o modelo fundamenta sua análise no quadro jurídico adequado e evita introduzir fatores irrelevantes. Isso leva a respostas que abordam a questão real em pauta, em vez de recorrer a declarações genéricas sobre a lei. Fornecer contexto geográfico (por exemplo, jurisdição) é particularmente importante, pois as leis variam significativamente entre estados e países. Mesmo que os LLMs conheçam a lei em teoria, eles tendem a recorrer a interpretações gerais sem um contexto específico.',
     }
-    technique2_example_question = {
-        'en': 'Is an oral contract enforceable?',
-        'pt': 'Um contrato verbal é válido?',
-    }
+    technique2_example_question = {'en': 'Is an oral contract enforceable?', 'pt': 'Um contrato verbal é válido?'}
     technique2_example_bad_prompt = {
         'en': 'Is an oral contract binding, or does it need to be in writing?',
         'pt': 'Um contrato verbal é válido, ou precisa ser por escrito?',
@@ -402,10 +367,7 @@ def _():
         'en': 'In the improved prompt, the context of Florida and real estate law immediately frames the question within a specific legal jurisdiction, triggering the model to apply the appropriate statutory framework (Florida\'s Statute of Frauds). The follow-up question asks for "specific elements" and "exceptions," directing the model to provide a comprehensive analysis rather than a simple yes/no answer. The context also makes clear that the question concerns enforceability in a specific scenario (a $750,000 commercial property sale) rather than oral contracts generally. This rich context guides the model to analyze whether any exceptions to the writing requirement might apply to this particular transaction, resulting in legally precise advice.',
         'pt': 'No prompt aprimorado, o contexto de São Paulo e da lei imobiliária brasileira imediatamente enquadra a questão dentro de uma jurisdição legal específica, levando o modelo a aplicar o quadro estatutário apropriado (artigo 108 do Código Civil). A pergunta de acompanhamento solicita "elementos específicos" e "exceções", direcionando o modelo a fornecer uma análise abrangente em vez de uma simples resposta sim/não. O contexto também deixa claro que a questão diz respeito à exigibilidade em um cenário específico (uma venda de imóvel comercial de R$ 750.000) e não a contratos verbais em geral. Este contexto rico orienta o modelo a analisar se quaisquer exceções ao requisito de escritura pública podem se aplicar a esta transação específica, resultando em um aconselhamento juridicamente preciso.',
     }
-    technique2_resource_title = {
-        'en': 'LLMs Can Generate Rich Context from Scratch',
-        'pt': 'LLMs Podem Gerar Contexto Rico do Zero',
-    }
+    technique2_resource_title = {'en': 'LLMs Can Generate Rich Context from Scratch', 'pt': 'LLMs Podem Gerar Contexto Rico do Zero'}
     technique2_resource_url = 'https://arxiv.org/abs/2307.07169'
     technique2_resource_description = {
         'en': 'Research paper showing how context helps LLMs generate better results',
@@ -443,10 +405,7 @@ def _():
         'en': 'Summarizing a specific part of a contract. (The user has a long employment contract but only cares about termination terms.)',
         'pt': '[Placeholder for Portuguese translation]',
     }
-    technique3_example_bad_prompt = {
-        'en': 'Summarize this employment contract.',
-        'pt': '[Placeholder for Portuguese translation]',
-    }
+    technique3_example_bad_prompt = {'en': 'Summarize this employment contract.', 'pt': '[Placeholder for Portuguese translation]'}
     technique3_example_good_prompt = {
         'en': 'If the following employment contract contains a Termination or Severance clause, summarize those provisions in detail, focusing only on termination conditions and any severance pay terms. If not, respond that the contract has no such provisions. Ignore other sections.',
         'pt': '[Placeholder for Portuguese translation]',
@@ -455,13 +414,8 @@ def _():
         'en': "The prompt explicitly sets a condition and scope: it tells the AI to look for termination or severance clauses and report on those and nothing else. It also provides a conditional fallback (\"if not, say there are none\") so the AI won't wander off-topic if the condition isn't met. This focused instruction ensures the AI's output will directly address the user's need (termination terms) without extraneous contract details. It also implicitly instructs the AI to read the contract text (provided in the prompt) with an eye only for a specific subject, which is akin to running a targeted search within the text.\n\nExample output: \"Termination Clause (Section 5): The contract allows either party to terminate with 30 days' written notice. However, if the employee is terminated for cause (defined as gross misconduct or violation of company policy), the employer can terminate immediately without notice. The clause specifies that termination must be communicated in writing and outlines a post-termination non-compete period of 6 months.\n\nSeverance Provision (Section 6): In cases of termination without cause, the employee is entitled to a severance payment equal to 3 months' salary. The severance is conditioned on the employee signing a release of claims. No severance is given if the termination is for cause or if the employee resigns.\"",
         'pt': '[Placeholder for Portuguese translation]',
     }
-    technique3_resource_title = {
-        'en': 'Prompt Engineering and Priming in Law',
-        'pt': '[Placeholder for Portuguese translation]',
-    }
-    technique3_resource_url = (
-        'https://www.researchgate.net/publication/382878312_Prompt_Engineering_and_Priming_in_Law'
-    )
+    technique3_resource_title = {'en': 'Prompt Engineering and Priming in Law', 'pt': '[Placeholder for Portuguese translation]'}
+    technique3_resource_url = 'https://www.researchgate.net/publication/382878312_Prompt_Engineering_and_Priming_in_Law'
     technique3_resource_description = {
         'en': 'Research on effective prompt engineering techniques for legal applications',
         'pt': '[Placeholder for Portuguese translation]',
@@ -513,13 +467,8 @@ def _():
         'en': 'The good prompt provides a concrete example clause that demonstrates the desired style (it\'s concise, includes a standard exclusion of indirect damages, and has an exception for gross negligence). By instructing the AI to use it as a guide, the model will mirror that phrasing and structure when drafting the new clause. The prompt also specifies the context (software service provider) so the AI can adjust any particulars (for instance, referencing "software or data" in the waiver if relevant). This approach reduces the guesswork for the AI – it knows exactly the kind of clause the user wants, resulting in a clause that likely aligns with industry standards or the user\'s preference as shown in the example.\n\nExample output: "Liability Waiver Clause: In no event shall either party be liable to the other for any indirect, special, incidental, or consequential damages (including lost profits or data loss) arising out of or related to this Agreement or the services provided, even if such party has been advised of the possibility of such damages. The foregoing limitation applies to all causes of action, whether arising in contract, tort, or otherwise, except that nothing in this Agreement shall limit or exclude liability for a party\'s gross negligence or willful misconduct."\n\nThe output clause closely follows the style of the example: it uses the "In no event shall…" phrasing, disclaims indirect damages, and includes an exception for gross negligence/willful misconduct. By contrast, a clause generated without the example might have been structured differently or missed including the exception. The example prompt ensured the result was aligned with the desired template.',
         'pt': 'Placeholder for Portuguese translation',
     }
-    technique4_resource_title = {
-        'en': 'Minnesota Law Review Article on LLMs in Legal Practice',
-        'pt': 'Placeholder for Portuguese translation',
-    }
-    technique4_resource_url = (
-        'https://minnesotalawreview.org/wp-content/uploads/2023/10/FL1-Choi-Schwarcz.pdf'
-    )
+    technique4_resource_title = {'en': 'Minnesota Law Review Article on LLMs in Legal Practice', 'pt': 'Placeholder for Portuguese translation'}
+    technique4_resource_url = 'https://minnesotalawreview.org/wp-content/uploads/2023/10/FL1-Choi-Schwarcz.pdf'
     technique4_resource_description = {
         'en': 'Comprehensive exploration of few-shot prompting techniques in legal contexts',
         'pt': 'Placeholder for Portuguese translation',
@@ -542,10 +491,7 @@ def _():
 @app.cell(hide_code=True)
 def _():
     technique5_slug = 'step-by-step'
-    technique5_name = {
-        'en': 'Step-by-Step Prompting (Chain-of-Thought Legal Reasoning)',
-        'pt': 'Placeholder for Portuguese translation',
-    }
+    technique5_name = {'en': 'Step-by-Step Prompting (Chain-of-Thought Legal Reasoning)', 'pt': 'Placeholder for Portuguese translation'}
     technique5_description = {
         'en': 'Step-by-step prompting involves asking the LLM to work through the problem in a logical sequence, rather than jumping straight to a conclusion. In legal tasks, this often means prompting the model to apply a structured analysis (for example, the IRAC method: Issue, Rule, Application, Conclusion, or breaking down elements of a legal test). You can achieve this by explicitly instructing the AI how to structure its reasoning. For instance: "Analyze this scenario step by step: first identify the legal issues, then state the relevant law for each issue, apply the facts, and finally give a conclusion." or simply "Let\'s think this through step-by-step.". Another variant is telling the model to enumerate its reasoning (e.g., "1, 2, 3…"). The idea is to mimic how a lawyer would deliberate on a problem methodically. This technique is especially useful for complex scenarios with multiple factors (such as determining if negligence is present, which requires analyzing duty, breach, causation, damages in turn).',
         'pt': 'Placeholder for Portuguese translation',
@@ -570,13 +516,8 @@ def _():
         'en': "This prompt explicitly asks for a step-by-step IRAC-style analysis. It not only tells the AI to consider each negligence element in order but also reminds it of what those elements are. The instruction ensures the answer will be organized (perhaps with headings or paragraphs for Duty, Breach, Causation, Damages, Conclusion). The model is less likely to omit a part of the analysis, and the user will get a structured explanation rather than a one-liner. By guiding the reasoning process, the prompt helps the AI reach a well-founded conclusion (or identify if information is missing) just as a human lawyer would.\n\nExample output: \"*Duty: The store, as a business open to the public, owes its customers a legal duty of care to maintain the premises in a reasonably safe condition. Here, that duty means regularly inspecting for hazards like spills and either cleaning them promptly or warning customers (e.g., with a 'Wet Floor' sign).\n\nBreach: We examine if the store breached its duty by failing to address the spilled liquid. If the spill was present long enough that employees should have noticed it (say, it had been on the floor for 30 minutes without cleanup), not cleaning it would likely be a breach of duty. If the spill happened moments before the fall, the store might argue it had no reasonable opportunity to discover and fix it, which could negate breach.\n\nCausation: The customer's injury must be caused by the store's breach. Here, the causal link is direct: the unsafe condition (wet floor) led to the slip-and-fall accident. We'd also consider proximate cause – it's foreseeable that an unaddressed spill leads to this kind of injury, so causation is established.\n\nDamages: The customer suffered actual harm (a broken arm, medical bills, etc.), satisfying the damages element required for negligence.\n\nConclusion: If evidence shows the spill was on the floor long enough that the store should have known and cleaned it, the store likely breached its duty. In that case, all four elements of negligence are met, and the store would likely be held liable for the customer's injury. If the spill was truly sudden and unforeseeable, the store might avoid liability, but absent such proof, this scenario points toward negligence on the store's part.*\"",
         'pt': 'Placeholder for Portuguese translation',
     }
-    technique5_resource_title = {
-        'en': "Deloitte's Guide to Legal Prompting",
-        'pt': 'Placeholder for Portuguese translation',
-    }
-    technique5_resource_url = (
-        'https://www2.deloitte.com/dl/en/pages/legal/articles/grundkurs-legal-prompting.html'
-    )
+    technique5_resource_title = {'en': "Deloitte's Guide to Legal Prompting", 'pt': 'Placeholder for Portuguese translation'}
+    technique5_resource_url = 'https://www2.deloitte.com/dl/en/pages/legal/articles/grundkurs-legal-prompting.html'
     technique5_resource_description = {
         'en': 'Comprehensive guide on effective legal prompting techniques including step-by-step reasoning',
         'pt': 'Placeholder for Portuguese translation',
@@ -599,10 +540,7 @@ def _():
 @app.cell(hide_code=True)
 def _():
     technique6_slug = 'contract-extraction'
-    technique6_name = {
-        'en': 'Extracting Key Provisions and Data from Contracts',
-        'pt': 'Placeholder for Portuguese translation',
-    }
+    technique6_name = {'en': 'Extracting Key Provisions and Data from Contracts', 'pt': 'Placeholder for Portuguese translation'}
     technique6_description = {
         'en': 'This technique involves directing an LLM to locate and extract specific information from legal documents like contracts, rather than summarizing the entire document. By focusing the model on particular provisions, clauses, or data points, attorneys can quickly find relevant information such as dates, obligations, defined terms, or conditions. The approach is similar to using targeted questions with a colleague who has read a document - except the LLM does the quick read-through and extraction for you.',
         'pt': 'Placeholder for Portuguese translation',
@@ -627,13 +565,8 @@ def _():
         'en': 'The good prompt does several things right: it isolates just the relevant clause (12.2) rather than sending the entire contract, asks a specific question about breach damages, and requests a structured response format (bullet points). This leads the LLM to focus solely on interpreting the liquidated damages provision, which establishes that certain payments for breach: 1) are considered liquidated damages not penalties, 2) are justified because actual damages would be difficult to measure, and 3) represent what the parties agree is a reasonable estimate of potential harm. The model doesn\'t waste time analyzing unrelated sections of the agreement, and the attorney gets precisely the information needed: the nature and justification of the damages provision. This extraction approach is significantly more efficient than asking for a general contract summary and then hunting through it for damage provisions.\n\nExample output: "• Effect of Clause 12.2 - Liquidated Damages:\n• The clause establishes that certain breach payments are classified as liquidated damages, not penalties\n• Both parties acknowledge that actual economic damages from specific breaches would be difficult to calculate with certainty\n• The payments represent a reasonable pre-estimate of potential damages, not punishment\n• This classification matters legally because courts generally enforce liquidated damages provisions but may invalidate penalty clauses\n• For the executive: limits potential argument that the damages are excessive or punitive\n• For the company: provides more certainty that the damage amounts will be enforceable if challenged in court"',
         'pt': 'Placeholder for Portuguese translation',
     }
-    technique6_resource_title = {
-        'en': 'Ethylene Sales Agreement',
-        'pt': 'Placeholder for Portuguese translation',
-    }
-    technique6_resource_url = (
-        'https://www.sec.gov/Archives/edgar/data/1604665/000119312514263367/d715499dex104.htm'
-    )
+    technique6_resource_title = {'en': 'Ethylene Sales Agreement', 'pt': 'Placeholder for Portuguese translation'}
+    technique6_resource_url = 'https://www.sec.gov/Archives/edgar/data/1604665/000119312514263367/d715499dex104.htm'
     technique6_resource_description = {
         'en': 'A complex and long agreement, perfect for this example.',
         'pt': 'Placeholder for Portuguese translation',
@@ -669,10 +602,7 @@ def _():
         'en': 'Drafting or refining confidentiality clauses in a Master Service Agreement. (You need to create or improve language around confidential information protection.)',
         'pt': 'Placeholder for Portuguese translation',
     }
-    technique7_example_bad_prompt = {
-        'en': 'Write a confidentiality clause for my MSA.',
-        'pt': 'Placeholder for Portuguese translation',
-    }
+    technique7_example_bad_prompt = {'en': 'Write a confidentiality clause for my MSA.', 'pt': 'Placeholder for Portuguese translation'}
     technique7_example_good_prompt = {
         'en': 'You are a lawyer drafting a confidentiality clause for a Master Service Agreement between a technology vendor and healthcare client under California law. Reference the structure in the SEC filing at https://www.sec.gov/Archives/edgar/data/1042134/000119312505162630/dex1033.htm. The clause should cover: (1) definition of confidential information, (2) obligations to maintain secrecy, (3) standard exceptions (public information, independently developed information, etc.), (4) duration of obligations (3 years post-termination), and (5) return of confidential information upon termination. Write the clause in plain English while maintaining necessary legal protections. Format with numbered subsections for readability.',
         'pt': 'Placeholder for Portuguese translation',
@@ -681,13 +611,8 @@ def _():
         'en': "The good prompt provides extensive context and direction for creating an effective confidentiality clause. It specifies the type of agreement (MSA), the parties involved (tech vendor and healthcare client), the governing law (California), and references a specific SEC filing as a structural guide. The prompt also clearly outlines the five key elements that must be included in the clause and provides specific parameters (3-year post-termination duration). Furthermore, it guides the style ('plain English') and formatting ('numbered subsections'), ensuring the output will be both legally sound and reader-friendly.\n\nBy contrast, the bad prompt gives virtually no information about context, content requirements, style preferences, or formatting needs, which would likely result in a generic clause that might not address the specific needs of a technology-healthcare relationship or conform to California law. The specificity in the good prompt ensures the model produces a clause that closely matches what would appear in a professionally drafted MSA, with appropriate attention to healthcare data concerns and technology service specifics.\n\nThe resulting clause might begin with a definition section that carefully defines confidential information in the healthcare technology context, outline specific security measures required for protected health information, list standard exceptions to confidentiality obligations, specify the 3-year post-termination period, and detail the procedures for returning or destroying confidential information when the agreement ends.",
         'pt': 'Placeholder for Portuguese translation',
     }
-    technique7_resource_title = {
-        'en': 'Master Service Agreement',
-        'pt': 'Placeholder for Portuguese translation',
-    }
-    technique7_resource_url = (
-        'https://www.sec.gov/Archives/edgar/data/1042134/000119312505162630/dex1033.htm'
-    )
+    technique7_resource_title = {'en': 'Master Service Agreement', 'pt': 'Placeholder for Portuguese translation'}
+    technique7_resource_url = 'https://www.sec.gov/Archives/edgar/data/1042134/000119312505162630/dex1033.htm'
     technique7_resource_description = {
         'en': 'A complex and long agreement, perfect for this example, but now techy.',
         'pt': 'Placeholder for Portuguese translation',
@@ -731,9 +656,7 @@ def _(DirectLLMClient, mo):
 
         # Display a loading message with a spinner
         with mo.status.spinner(subtitle='Generating response...') as spinner:
-            response = client.generate(
-                prompt=user_prompt.value, system_message='You are a helpful assistant.'
-            )
+            response = client.generate(prompt=user_prompt.value, system_message='You are a helpful assistant.')
             spinner.update(subtitle='Formatting response...')
 
         final_response = mo.vstack(
@@ -755,7 +678,6 @@ def _(DirectLLMClient, mo):
             ]
         )
         return final_response
-
     return (display_response,)
 
 
@@ -763,10 +685,7 @@ def _(DirectLLMClient, mo):
 def _():
     # Cell: Define Technique 8
     technique8_slug = 'ambiguity-interpretation'
-    technique8_name = {
-        'en': 'Handling Ambiguity and Multiple Interpretations',
-        'pt': 'Lidando com Ambiguidade e Múltiplas Interpretações',
-    }
+    technique8_name = {'en': 'Handling Ambiguity and Multiple Interpretations', 'pt': 'Lidando com Ambiguidade e Múltiplas Interpretações'}
     technique8_description = {
         'en': 'Legal language is notoriously prone to ambiguity. A well-designed prompt can help explore different interpretations of a clause or identify unclear wording. If you suspect a contract clause or statute could be read in more than one way, prompt the model to analyze it from multiple angles. This technique leverages the LLM to surface different possible readings of ambiguous text, helping lawyers anticipate potential disputes or identify areas needing clearer drafting.',
         'pt': 'A linguagem jurídica é notoriamente propensa à ambiguidade. Um prompt bem elaborado pode ajudar a explorar diferentes interpretações de uma cláusula ou identificar redação pouco clara. Se você suspeitar que uma cláusula contratual ou estatuto pode ser lido de mais de uma maneira, solicite ao modelo que o analise de múltiplos ângulos.',
@@ -822,15 +741,10 @@ def _(get_current_language, mo, translations):
         query_params = mo.query_params().to_dict()
 
         return mo.ui.dropdown(
-            options={
-                'Your prompt': {'prompt': ''},
-                'Bad prompt': {'prompt': bad_prompt_text},
-                'Good prompt': {'prompt': good_prompt_text},
-            },
+            options={'Your prompt': {'prompt': ''}, 'Bad prompt': {'prompt': bad_prompt_text}, 'Good prompt': {'prompt': good_prompt_text}},
             value='Your prompt',
             label=translations['examples'][get_current_language()],
         )
-
     return (generate_examples,)
 
 
@@ -838,10 +752,7 @@ def _(get_current_language, mo, translations):
 def _():
     # Cell: Define Technique 9
     technique9_slug = 'comparative-law'
-    technique9_name = {
-        'en': 'Comparative Law Analysis Across Jurisdictions',
-        'pt': 'Análise Comparativa de Leis Entre Jurisdições',
-    }
+    technique9_name = {'en': 'Comparative Law Analysis Across Jurisdictions', 'pt': 'Análise Comparativa de Leis Entre Jurisdições'}
     technique9_description = {
         'en': 'Legal outcomes can vary dramatically across jurisdictions. A savvy prompt will recognize when a question requires a comparative approach and instruct the model to address each jurisdiction separately. This technique is useful for questions like, "How do the laws of the US and EU differ on data protection?" or "Compare patent eligibility in the US versus China." By explicitly naming the jurisdictions and requesting a structured comparison, you can obtain a clearer understanding of how different legal systems approach the same issue.',
         'pt': 'Os resultados legais podem variar dramaticamente entre jurisdições. Um prompt inteligente reconhece quando uma questão requer uma abordagem comparativa e instrui o modelo a abordar cada jurisdição separadamente. Esta técnica é útil para perguntas como, "Como as leis dos EUA e da UE diferem na proteção de dados?" ou "Compare a elegibilidade de patentes nos EUA versus China."',
@@ -866,10 +777,7 @@ def _():
         'en': "The good prompt explicitly names three jurisdictions (New York, England, and Brazil) and the specific legal concept (penalty clauses in contracts). It also requests a structured format with the jurisdictions clearly separated. This approach will yield a response that helps the user understand exactly how each legal system handles penalty clauses, rather than receiving a vague, generalized answer that might not apply in their situation.\n\nThe model's response would likely be organized by jurisdiction with clear distinctions highlighted. For New York and English law (both common law systems), the model would explain the strong prohibition against penalty clauses while allowing legitimate liquidated damages. For Brazilian law (a civil law system), it would note the different approach where penalty clauses are recognized and enforceable but subject to statutory limitations. The structured format makes these critical differences immediately apparent.\n\nThis comparative approach is particularly valuable for transactional lawyers drafting agreements that might be enforced in multiple jurisdictions. Without this clear comparison, a lawyer might draft provisions that would be unenforceable in some of the relevant jurisdictions. The prompt's request for relevant legal principles or cases also helps ensure the response includes authoritative support for each jurisdiction's approach, making the answer more reliable and trustworthy.\n\nExample output might include:\n\n**New York Law**\n- Follows general common law principles - clauses deemed a \"penalty\" (punitive in nature) are not enforceable\n- Courts distinguish between unenforceable penalty clauses and enforceable liquidated damages clauses\n- Key test: Is the amount a reasonable pre-estimate of loss (enforceable) or punitive (unenforceable)?\n- Courts will assess if the amount is disproportionate to the actual harm\n\n**English Law**\n- Similar to New York, as the origin of the common law rule against penalties\n- Leading case: Dunlop Pneumatic Tyre Co. v. New Garage (1915) established tests to distinguish penalties from genuine liquidated damages\n- Modern development: Cavendish Square Holding v. Makdessi refined this test\n- Core principle: If a clause imposes a detriment out of proportion to any legitimate interest in enforcement, it's an unenforceable penalty\n\n**Brazilian Law**\n- Civil law approach differs significantly from common law jurisdictions\n- The concept of a \"penalty clause\" (cláusula penal) is recognized and enforceable, but regulated by statute\n- According to the Brazilian Civil Code, any contractual penalty cannot exceed the value of the main obligation\n- Courts can reduce the penalty if deemed excessive or if there's partial performance\n- Core difference: Brazil does not follow the common law penalty doctrine; it enforces agreed penalties within statutory limits",
         'pt': 'O bom prompt nomeia explicitamente três jurisdições (Nova York, Inglaterra e Brasil) e o conceito jurídico específico (cláusulas penais em contratos). Também solicita um formato estruturado com as jurisdições claramente separadas.',
     }
-    technique9_resource_title = {
-        'en': 'Brazil Civil Code 2018 Amendments',
-        'pt': 'Código Civil Brasileiro Emendas de 2018',
-    }
+    technique9_resource_title = {'en': 'Brazil Civil Code 2018 Amendments', 'pt': 'Código Civil Brasileiro Emendas de 2018'}
     technique9_resource_url = 'https://webfiles-sc1.blackbaud.com/files/support/helpfiles/npoconnect-qa/content/resources/attachments/brazil-law-civil-code-13.777-2018.pdf'
     technique9_resource_description = {
         'en': "Reference document showing Brazil's civil law approach to contract provisions",
@@ -908,13 +816,7 @@ def _(get_current_language, mo, translations):
         """)
 
         # Return components to be used by other cells
-        return {
-            'technique_name': technique_name,
-            'bad_prompt': bad_prompt,
-            'good_prompt': good_prompt,
-            'header': playground_header,
-        }
-
+        return {'technique_name': technique_name, 'bad_prompt': bad_prompt, 'good_prompt': good_prompt, 'header': playground_header}
     return (create_enhanced_interactive_playground,)
 
 
@@ -949,7 +851,6 @@ def _(mo):
                 )
             ]
         )
-
     return (generate_output,)
 
 
@@ -964,12 +865,8 @@ def _(get_current_language, mo, translations):
             full_width=True,
             rows=5,
         ).form(
-            submit_button_label=translations['send_prompt'][get_current_language()],
-            bordered=True,
-            clear_on_submit=True,
-            show_clear_button=True,
+            submit_button_label=translations['send_prompt'][get_current_language()], bordered=True, clear_on_submit=True, show_clear_button=True
         )
-
     return (generate_form,)
 
 
@@ -1035,7 +932,11 @@ def ch_1():
 
 
 @app.cell(hide_code=True)
-def _(create_enhanced_interactive_playground, generate_examples, get_current_language):
+def _(
+    create_enhanced_interactive_playground,
+    generate_examples,
+    get_current_language,
+):
     def create_interactive_playground_number(param):
         """
         Create playground components for a specific technique number
@@ -1049,13 +950,11 @@ def _(create_enhanced_interactive_playground, generate_examples, get_current_lan
 
         # Generate examples dropdown
         examples = generate_examples(
-            playground_data['bad_prompt'][get_current_language()],
-            playground_data['good_prompt'][get_current_language()],
+            playground_data['bad_prompt'][get_current_language()], playground_data['good_prompt'][get_current_language()]
         )
 
         # Return data needed for the next cell
         return playground_data['header'], examples
-
     return (create_interactive_playground_number,)
 
 
@@ -1135,15 +1034,9 @@ def _(get_current_language, mo, translations):
                 """)
             }
         )
-        components = [
-            technique_header,
-            example_tabs,
-            why_it_works_accordion,
-            more_resources_accordion,
-        ]
+        components = [technique_header, example_tabs, why_it_works_accordion, more_resources_accordion]
 
         return mo.vstack(components)
-
     return (display_technique_,)
 
 
@@ -1173,7 +1066,6 @@ def _(display_technique_):
             globals()[f'technique{param}_resource_url'],
             globals()[f'technique{param}_resource_description'],
         )
-
     return (display_technique_number,)
 
 
@@ -1181,6 +1073,7 @@ def _(display_technique_):
 def _(display_technique_number):
     # Display technique #1
     display_technique_number(1)
+    return
 
 
 @app.cell
@@ -1208,18 +1101,21 @@ def _(examples1, form1, generate_output):
 def _(examples1, form1, header1, mo, output1):
     # Assemble final UI for technique #1
     mo.vstack([header1, examples1, form1, output1], justify='space-between', heights=[1, 2, 1, 1])
+    return
 
 
 @app.cell
 def _(display_response, form1):
     # Display response for technique #1
     display_response(form1)
+    return
 
 
 @app.cell(hide_code=True)
 def _(display_technique_number):
     # Display technique #2
     display_technique_number(2)
+    return
 
 
 @app.cell
@@ -1252,17 +1148,20 @@ def _(examples2, form2, generate_output):
 def _(examples2, form2, header2, mo, output2):
     # Assemble final UI for technique #2
     mo.vstack([header2, examples2, form2, output2], justify='space-between', heights=[1, 2, 1, 1])
+    return
 
 
 @app.cell
 def _(display_response, form2):
     # Display response for technique #2
     display_response(form2)
+    return
 
 
 @app.cell(hide_code=True)
 def _(display_technique_number):
     display_technique_number(3)
+    return
 
 
 @app.cell
@@ -1295,17 +1194,20 @@ def _(examples3, form3, generate_output):
 def _(examples3, form3, header3, mo, output3):
     # Assemble final UI for technique #3
     mo.vstack([header3, examples3, form3, output3], justify='space-between', heights=[1, 2, 1, 1])
+    return
 
 
 @app.cell
 def _(display_response, form3):
     # Display response for technique #3
     display_response(form3)
+    return
 
 
 @app.cell(hide_code=True)
 def _(display_technique_number):
     display_technique_number(4)
+    return
 
 
 @app.cell
@@ -1338,17 +1240,20 @@ def _(examples4, form4, generate_output):
 def _(examples4, form4, header4, mo, output4):
     # Assemble final UI for technique #4
     mo.vstack([header4, examples4, form4, output4], justify='space-between', heights=[1, 2, 1, 1])
+    return
 
 
 @app.cell
 def _(display_response, form4):
     # Display response for technique #4
     display_response(form4)
+    return
 
 
 @app.cell(hide_code=True)
 def _(display_technique_number):
     display_technique_number(5)
+    return
 
 
 @app.cell
@@ -1381,18 +1286,21 @@ def _(examples5, form5, generate_output):
 def _(examples5, form5, header5, mo, output5):
     # Assemble final UI for technique #5
     mo.vstack([header5, examples5, form5, output5], justify='space-between', heights=[1, 2, 1, 1])
+    return
 
 
 @app.cell
 def _(display_response, form5):
     # Display response for technique #5
     display_response(form5)
+    return
 
 
 @app.cell(hide_code=True)
 def _(display_technique_number):
     # Display technique #6
     display_technique_number(6)
+    return
 
 
 @app.cell
@@ -1425,17 +1333,20 @@ def _(examples6, form6, generate_output):
 def _(examples6, form6, header6, mo, output6):
     # Assemble final UI for technique #6
     mo.vstack([header6, examples6, form6, output6], justify='space-between', heights=[1, 2, 1, 1])
+    return
 
 
 @app.cell
 def _(display_response, form6):
     # Display response for technique #6
     display_response(form6)
+    return
 
 
 @app.cell(hide_code=True)
 def _(display_technique_number):
     display_technique_number(7)
+    return
 
 
 @app.cell
@@ -1468,17 +1379,20 @@ def _(examples7, form7, generate_output):
 def _(examples7, form7, header7, mo, output7):
     # Assemble final UI for technique #7
     mo.vstack([header7, examples7, form7, output7], justify='space-between', heights=[1, 2, 1, 1])
+    return
 
 
 @app.cell
 def _(display_response, form7):
     # Display response for technique #7
     display_response(form7)
+    return
 
 
 @app.cell(hide_code=True)
 def _(display_technique_number):
     display_technique_number(8)
+    return
 
 
 @app.cell
@@ -1511,17 +1425,20 @@ def _(examples8, form8, generate_output):
 def _(examples8, form8, header8, mo, output8):
     # Assemble final UI for technique #8
     mo.vstack([header8, examples8, form8, output8], justify='space-between', heights=[1, 2, 1, 1])
+    return
 
 
 @app.cell
 def _(display_response, form8):
     # Display response for technique #8
     display_response(form8)
+    return
 
 
 @app.cell(hide_code=True)
 def _(display_technique_number):
     display_technique_number(9)
+    return
 
 
 @app.cell
@@ -1554,17 +1471,20 @@ def _(examples9, form9, generate_output):
 def _(examples9, form9, header9, mo, output9):
     # Assemble final UI for technique #9
     mo.vstack([header9, examples9, form9, output9], justify='space-between', heights=[1, 2, 1, 1])
+    return
 
 
 @app.cell
 def _(display_response, form9):
     # Display response for technique #9
     display_response(form9)
+    return
 
 
 @app.cell(hide_code=True)
 def _(display_technique_number):
     display_technique_number(10)
+    return
 
 
 @app.cell
@@ -1596,15 +1516,15 @@ def _(examples10, form10, generate_output):
 @app.cell
 def _(examples10, form10, header10, mo, output10):
     # Assemble final UI for technique #10
-    mo.vstack(
-        [header10, examples10, form10, output10], justify='space-between', heights=[1, 2, 1, 1]
-    )
+    mo.vstack([header10, examples10, form10, output10], justify='space-between', heights=[1, 2, 1, 1])
+    return
 
 
 @app.cell
 def _(display_response, form10):
     # Display response for technique #10
     display_response(form10)
+    return
 
 
 @app.cell(hide_code=True)
@@ -1629,7 +1549,8 @@ def _(mo):
         </div>
         """
     )
+    return
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run()
