@@ -19,4 +19,4 @@ services:
       start_period: 40s
     volumes:
       - ./data:/app/data  # For persistent data
-      - ./prompting:/app/prompting  # To allow live changes to code during development 
+      - ./prompting:/app/prompting  # To allow live changes to code during development

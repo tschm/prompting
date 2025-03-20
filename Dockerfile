@@ -18,4 +18,4 @@ RUN mkdir -p prompting/layouts data
 EXPOSE 8080
 
 # Command to run the app
-CMD ["marimo", "run", "prompting/app.py", "--no-token", "--port", "8080", "--host", "0.0.0.0"] 
+CMD ["marimo", "run", "prompting/app.py", "--no-token", "--port", "8080", "--host", "0.0.0.0"]

@@ -30,4 +30,4 @@ If applicable, add screenshots to help explain your problem.
  - Version [e.g. 0.1.0]
 
 **Additional context**
-Add any other context about the problem here. 
+Add any other context about the problem here.
