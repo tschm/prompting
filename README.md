@@ -4,6 +4,7 @@ An interactive application showcasing advanced prompting techniques for legal pr
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/arthrod/prompting)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Hugging Face Spaces](https://img.shields.io/badge/🤗%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/arthrod/prompting)
 
 ## About
 
@@ -34,13 +35,13 @@ You can run the application in several ways:
 ### Local Installation
 
 ```bash
-# Create a virtual environment
+# Using make (recommended)
+make install
+make run
+
+# Or using uv directly
 uv venv
-
-# Install dependencies (synchronize all packages from pyproject.toml)
 uv sync --all-packages
-
-# Run the application
 uv run marimo run app.py
 ```
 
@@ -52,7 +53,7 @@ This repository includes a DevContainer configuration for VS Code and GitHub Cod
 2. The environment will be automatically set up
 3. Run the application with:
    ```bash
-   uv run marimo run app.py
+   make run
    ```
 
 ### Docker Deployment
@@ -88,7 +89,7 @@ docker pull ghcr.io/arthrod/prompting:main
 docker run -p 8080:8080 ghcr.io/arthrod/prompting:main
 ```
 
-Access the application at http://localhost:8080 after deployment.
+Access the application at https://prompting.synthetic.lawyer after deployment.
 
 > **Note:** The port exposure (`-p 8080:8080` or the `ports` section in docker-compose.yml) is necessary for browser access to the application. The container internally runs on port 8080, and this mapping makes it accessible at the same port on your host machine.
 
@@ -125,11 +126,23 @@ All dependencies are managed through `pyproject.toml` and installed using `uv sy
 
 ## Roadmap
 
+### English
 - Complete Portuguese translations for all techniques
 - Add advanced prompting templates specific to different legal practice areas
 - Integrate with more LLM providers
 - Add export functionality for generated prompts
 - Create a companion CLI tool for quick prompt generation
+
+### Português
+- Completar traduções em português para todas as técnicas
+- Adicionar modelos avançados de prompts específicos para diferentes áreas do direito
+- Integrar com mais provedores de LLM
+- Adicionar funcionalidade de exportação para prompts gerados
+- Criar uma ferramenta CLI para geração rápida de prompts
+
+## Special Thanks
+
+A special thank you to [Thomas Schmelzer](https://github.com/tschm) for his invaluable contributions and for helping me fix some of my "noob" mistakes. His expertise and guidance have been instrumental in improving this project.
 
 ## Author
 
