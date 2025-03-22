@@ -3,3 +3,8 @@
 __pycache__
 .qodo
 .env
+*.log
+.ruff_cache/
+.DS_Store
+Thumbs.db
+	

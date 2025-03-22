@@ -16,7 +16,7 @@ venv:
 
 install: venv ## Install all dependencies using uv
 	@printf "$(BLUE)Installing dependencies...$(RESET)\n"
-	@uv pip install --no-cache-dir -r requirements.txt
+	@uv sync
 
 ##@ Code Quality
 

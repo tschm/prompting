@@ -54,3 +54,5 @@ docker-compose*.yml
 # Local development files
 *.log
 .ruff_cache/
+.qodo
+.venv
