@@ -5,7 +5,7 @@ RESET := \033[0m
 
 .DEFAULT_GOAL := help
 
-.PHONY: help verify install fmt marimo clean
+.PHONY: help verify install fmt marimo run clean
 
 ##@ Development Setup
 
@@ -37,7 +37,12 @@ clean: ## Clean generated files and directories
 marimo: install ## Start a Marimo server
 	@printf "$(BLUE)Start Marimo server...$(RESET)\n"
 	@uv pip install marimo
-	@uv run marimo edit notebooks
+	@uv run marimo edit prompting
+
+run: install
+	@printf "$(BLUE)Start Marimo server...$(RESET)\n"
+	@uv pip install marimo
+	@uv run marimo run prompting/app.py
 
 ##@ Help
 

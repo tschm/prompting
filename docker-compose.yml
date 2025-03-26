@@ -4,7 +4,7 @@ services:
   prompting-app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile
     ports:
       - "8080:8080"  # Map container port 8080 to host port 8080 (necessary for browser access)
     environment:
