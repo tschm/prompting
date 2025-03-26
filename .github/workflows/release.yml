@@ -34,7 +34,7 @@ jobs:
           github_actor: ${{ github.actor }}
           github_repository: ${{ github.repository }}
           tag: ${{ needs.tagging.outputs.new_tag }}
-          github_token: ${{ secrets.github_token }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           labels: |
             org.opencontainers.image.title=Legal Prompting Techniques App
             org.opencontainers.image.description=Interactive application for learning legal-focused LLM prompting techniques
