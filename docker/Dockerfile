@@ -9,7 +9,7 @@ RUN pip install -U uv
 COPY . .
 
 # Install project dependencies using uv sync
-RUN uv sync --install --all-packages
+RUN uv sync --all-extras
 
 # Create necessary directories
 RUN mkdir -p data
