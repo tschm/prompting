@@ -5,14 +5,14 @@ WORKDIR /app
 # Install uv for better dependency management
 RUN pip install -U uv
 
-# Copy project files
+# Copy project files (copies the prompting folder)
 COPY . .
 
 # Install project dependencies using uv sync
-RUN uv sync --all-packages
+RUN uv sync --install --all-packages
 
 # Create necessary directories
-RUN mkdir -p prompting/layouts data
+RUN mkdir -p data
 
 # Expose the port the app runs on
 EXPOSE 8080

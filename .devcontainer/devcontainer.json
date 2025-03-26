@@ -16,7 +16,7 @@
             "settings": {
                 "python.pythonPath": ".venv/bin/python",
                 "python.defaultInterpreterPath": ".venv/bin/python",
-                "python.linting.enabled": false,
+                "python.linting.enabled": true,
                 "python.linting.ruffEnabled": true,
                 "python.linting.pylintEnabled": false,
                 "python.testing.pytestEnabled": false,
