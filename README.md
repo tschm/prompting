@@ -36,12 +36,12 @@ You can run the application in several ways:
 
 ```bash
 # Using make (recommended)
-make install
+# will install uv and construct the virtual environment based on the pyproject.toml file
 make run
 
-# Or using uv directly
+# Or using uv directly (assuming it is installed)
 uv venv
-uv sync --all-packages
+uv sync --install --all-packages
 uv run marimo run app.py
 ```
 
