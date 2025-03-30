@@ -9,5 +9,5 @@
     ":semanticCommits",
     ":pinVersions"
   ],
-  "enabledManagers": ["pep621", "pre-commit", "github-actions"]
+  "enabledManagers": ["pep621", "pre-commit", "github-actions", "dockerfile", "devcontainer"]
 }
