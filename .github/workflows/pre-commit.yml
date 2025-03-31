@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: tschm/cradle/actions/pre-commit@v0.1.59
 
+
   deptry:
     runs-on: ubuntu-latest
     steps:
