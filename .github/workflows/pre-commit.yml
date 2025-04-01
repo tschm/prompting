@@ -8,7 +8,8 @@ jobs:
   pre-commit:
     runs-on: ubuntu-latest
     steps:
-      - uses: 
+      - uses:
+
   deptry:
     runs-on: ubuntu-latest
     steps:
