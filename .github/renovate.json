@@ -6,7 +6,11 @@
     ":automergeMinor",
     ":dependencyDashboard",
     ":maintainLockFilesWeekly",
-    ":semanticCommits",
+    ":semanticCommits"
   ],
-  "enabledManagers": ["pep621", "pre-commit", "github-actions", "dockerfile", "devcontainer"]
+  "enabledManagers": ["pep621", "pre-commit", "github-actions", "dockerfile", "devcontainer"],
+  "timezone": "Asia/Dubai",
+  "schedule": [
+    "before 10am on wednesday"
+  ]  
 }
