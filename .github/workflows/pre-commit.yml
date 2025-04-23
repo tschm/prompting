@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Build the virtual environment"
-        uses: tschm/cradle/actions/environment@v0.1.59
+        uses: tschm/cradle/actions/environment@v0.1.60
 
-      - uses: tschm/cradle/actions/deptry@v0.1.59
+      - uses: tschm/cradle/actions/deptry@v0.1.60
         with:
           source-folder: prompting
