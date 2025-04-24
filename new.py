@@ -1,7 +1,9 @@
+
+
 import marimo
 
-__generated_with = '0.12.8'
-app = marimo.App(width='medium', layout_file='layouts/new.slides.json')
+__generated_with = "0.12.8"
+app = marimo.App(width="medium", layout_file="layouts/new.slides.json")
 
 
 @app.cell
@@ -83,6 +85,7 @@ def _(mo):
         }
         </style>
         """)
+
 
     return (custom_css,)
 
@@ -194,7 +197,6 @@ def _(Optional, httpx, json, os):
                 return f'Unexpected response format: {str(e)}'
             except Exception as e:
                 return f'Unexpected error: {str(e)}'
-
     return (DirectLLMClient,)
 
 
@@ -202,16 +204,14 @@ def _(Optional, httpx, json, os):
 def _(mo):
     get_submissions, set_submissions = mo.state([])
     get_prompt, set_prompt = mo.state('')
+    return
 
 
 @app.cell
 def _(custom_css, mo):
     # Cell 4: Create state variables
     custom_css()
-    language_is_english = mo.ui.checkbox(
-        label='Before we start, check the box for English! Click on the corners for tthe next or previous page / Clique nos cantos para a próxima página ou anterior',
-        value=False,
-    )
+    language_is_english = mo.ui.checkbox(label='Before we start, check the box for English! Click on the corners for tthe next or previous page / Clique nos cantos para a próxima página ou anterior', value=False)
     language_is_english
     return (language_is_english,)
 
@@ -221,7 +221,6 @@ def _(language_is_english):
     def get_current_language():
         """Returns 'en' if language switch is set to English, otherwise 'pt'."""
         return 'en' if language_is_english.value else 'pt'
-
     return (get_current_language,)
 
 
@@ -299,6 +298,7 @@ def _(mo):
         </div>
         """
     )
+    return
 
 
 @app.cell
@@ -370,6 +370,7 @@ def _(mo):
         </div>
         """
     )
+    return
 
 
 @app.cell
@@ -377,42 +378,43 @@ def _():
     # Cell 7: Technique Data
     technique1_slug = 'persona'
     technique1_name = {
-        'en': 'Role-Based Prompting (Persona Priming)',
-        'pt': 'Prompting Baseado em Papéis (Preparação de Persona)',
+        "en": "Role-Based Prompting (Persona Priming)",
+        "pt": "Prompting Baseado em Papéis (Preparação de Persona)",
     }
     technique1_description = {
-        'en': 'Role-based prompting involves explicitly assigning the AI a specific role or persona relevant to the task. For example, you might begin a prompt with "You are an experienced contracts attorney…" or "Act as a judge writing an opinion…". This primes the model to adopt the perspective, knowledge, and tone of that role. It can also include defining the audience or viewpoint (e.g. "explain like I\'m a client" vs. "write as a legal scholar"). By setting a persona, the prompt guides the LLM to produce answers aligned with that expertise or viewpoint.',
-        'pt': 'O prompting baseado em papéis envolve atribuir explicitamente à IA um papel ou persona específica relevante para a tarefa. Por exemplo, você pode começar um prompt com "Você é um advogado experiente em contratos..." ou "Atue como um juiz escrevendo uma opinião...". Isso prepara o modelo para adotar a perspectiva, conhecimento e tom desse papel. Também pode incluir a definição do público ou ponto de vista (ex: "explique como se eu fosse um cliente" vs. "escreva como um estudioso do direito"). Ao definir uma persona, o prompt orienta o LLM a produzir respostas alinhadas com essa expertise ou ponto de vista.',
+        "en": "Role-based prompting involves explicitly assigning the AI a specific role or persona relevant to the task. For example, you might begin a prompt with \"You are an experienced contracts attorney…\" or \"Act as a judge writing an opinion…\". This primes the model to adopt the perspective, knowledge, and tone of that role. It can also include defining the audience or viewpoint (e.g. \"explain like I'm a client\" vs. \"write as a legal scholar\"). By setting a persona, the prompt guides the LLM to produce answers aligned with that expertise or viewpoint.",
+        "pt": "O prompting baseado em papéis envolve atribuir explicitamente à IA um papel ou persona específica relevante para a tarefa. Por exemplo, você pode começar um prompt com \"Você é um advogado experiente em contratos...\" ou \"Atue como um juiz escrevendo uma opinião...\". Isso prepara o modelo para adotar a perspectiva, conhecimento e tom desse papel. Também pode incluir a definição do público ou ponto de vista (ex: \"explique como se eu fosse um cliente\" vs. \"escreva como um estudioso do direito\"). Ao definir uma persona, o prompt orienta o LLM a produzir respostas alinhadas com essa expertise ou ponto de vista.",
     }
     technique1_why_it_works = {
-        'en': 'Specifying a role focuses the LLM on domain-specific knowledge and style, narrowing the scope of its response. Authoritative guidance suggests treating the LLM "as a brilliant but very new employee…who needs explicit instructions," which includes giving it a clear role. Research has shown that responses can improve in accuracy when the prompt asks for analysis in the voice of a particular expert; for instance, GPT-4 gave a correct answer when asked to analyze a case "as [Harvard Law Professor] Cass Sunstein might," whereas a generic prompt yielded a hallucination. In practice, a persona provides context that the model can implicitly use (such as legal terminology or methodology familiar to that role), resulting in more on-point and technically accurate answers.',
-        'pt': 'Especificar um papel concentra o LLM em conhecimentos e estilos específicos do domínio, restringindo o escopo de sua resposta. Orientações autoritativas sugerem tratar o LLM "como um funcionário brilhante, mas muito novo... que precisa de instruções explícitas", o que inclui dar-lhe um papel claro. Pesquisas demonstraram que as respostas podem melhorar em precisão quando o prompt solicita análise na voz de um especialista específico; por exemplo, o GPT-4 deu uma resposta correta quando solicitado a analisar um caso "como [o Professor de Direito de Harvard] Cass Sunstein faria", enquanto um prompt genérico produziu uma alucinação. Na prática, uma persona fornece contexto que o modelo pode usar implicitamente (como terminologia jurídica ou metodologia familiar àquele papel), resultando em respostas mais precisas e tecnicamente acuradas.',
+        "en": "Specifying a role focuses the LLM on domain-specific knowledge and style, narrowing the scope of its response. Authoritative guidance suggests treating the LLM \"as a brilliant but very new employee…who needs explicit instructions,\" which includes giving it a clear role. Research has shown that responses can improve in accuracy when the prompt asks for analysis in the voice of a particular expert; for instance, GPT-4 gave a correct answer when asked to analyze a case \"as [Harvard Law Professor] Cass Sunstein might,\" whereas a generic prompt yielded a hallucination. In practice, a persona provides context that the model can implicitly use (such as legal terminology or methodology familiar to that role), resulting in more on-point and technically accurate answers.",
+        "pt": "Especificar um papel concentra o LLM em conhecimentos e estilos específicos do domínio, restringindo o escopo de sua resposta. Orientações autoritativas sugerem tratar o LLM \"como um funcionário brilhante, mas muito novo... que precisa de instruções explícitas\", o que inclui dar-lhe um papel claro. Pesquisas demonstraram que as respostas podem melhorar em precisão quando o prompt solicita análise na voz de um especialista específico; por exemplo, o GPT-4 deu uma resposta correta quando solicitado a analisar um caso \"como [o Professor de Direito de Harvard] Cass Sunstein faria\", enquanto um prompt genérico produziu uma alucinação. Na prática, uma persona fornece contexto que o modelo pode usar implicitamente (como terminologia jurídica ou metodologia familiar àquele papel), resultando em respostas mais precisas e tecnicamente acuradas.",
     }
     technique1_example_question = {
-        'en': "A client's supplier breached a contract. What should the client do?",
-        'pt': 'O fornecedor de um cliente violou um contrato. O que o cliente deve fazer?',
+        "en": "A client's supplier breached a contract. What should the client do?",
+        "pt": "O fornecedor de um cliente violou um contrato. O que o cliente deve fazer?",
     }
     technique1_example_bad_prompt = {
-        'en': 'What should a company do if a supplier breaks a contract?',
-        'pt': 'O que uma empresa deve fazer se um fornecedor quebrar um contrato?',
+        "en": "What should a company do if a supplier breaks a contract?",
+        "pt": "O que uma empresa deve fazer se um fornecedor quebrar um contrato?",
     }
     technique1_example_good_prompt = {
-        'en': "You are a seasoned contracts attorney advising a tech company. The company's supplier failed to deliver goods, breaching their contract. Explain the legal steps the company should take next (e.g. sending a breach notice, seeking damages under the contract or UCC), in plain language for a business executive.",
-        'pt': 'Você é um advogado experiente em contratos assessorando uma empresa de tecnologia. O fornecedor da empresa não entregou os produtos, violando o contrato. Explique os passos legais que a empresa deve tomar a seguir (por exemplo, enviar uma notificação de violação, buscar indenização conforme o contrato ou o Código Comercial), em linguagem simples para um executivo de negócios.',
+        "en": "You are a seasoned contracts attorney advising a tech company. The company's supplier failed to deliver goods, breaching their contract. Explain the legal steps the company should take next (e.g. sending a breach notice, seeking damages under the contract or UCC), in plain language for a business executive.",
+        "pt": "Você é um advogado experiente em contratos assessorando uma empresa de tecnologia. O fornecedor da empresa não entregou os produtos, violando o contrato. Explique os passos legais que a empresa deve tomar a seguir (por exemplo, enviar uma notificação de violação, buscar indenização conforme o contrato ou o Código Comercial), em linguagem simples para um executivo de negócios.",
     }
     technique1_example_explanation = {
-        'en': 'By assigning the AI the role of a "seasoned contracts attorney," the model focuses on providing legally sound advice about contract breaches. The prompt also specifies the audience (a business executive), which guides the AI to use "plain language" while still covering technical legal concepts like breach notices and UCC remedies. The resulting response is likely to include structured legal steps, appropriate citations to relevant law, and practical advice—all delivered in the professional tone of an attorney advising a client. Without this role priming, the response might lack legal specificity or fail to address formal remedies available under contract law.',
-        'pt': 'Ao atribuir à IA o papel de um "advogado experiente em contratos", o modelo se concentra em fornecer orientações juridicamente sólidas sobre violações contratuais. O prompt também especifica o público (um executivo de negócios), o que orienta a IA a usar "linguagem simples" enquanto ainda aborda conceitos jurídicos técnicos como notificações de violação e remédios previstos em lei comercial. A resposta resultante provavelmente incluirá etapas legais estruturadas, citações apropriadas à legislação relevante e conselhos práticos—tudo entregue no tom profissional de um advogado orientando um cliente. Sem essa preparação de papel, a resposta poderia carecer de especificidade jurídica ou deixar de abordar os remédios formais disponíveis sob a lei contratual.',
+        "en": "By assigning the AI the role of a \"seasoned contracts attorney,\" the model focuses on providing legally sound advice about contract breaches. The prompt also specifies the audience (a business executive), which guides the AI to use \"plain language\" while still covering technical legal concepts like breach notices and UCC remedies. The resulting response is likely to include structured legal steps, appropriate citations to relevant law, and practical advice—all delivered in the professional tone of an attorney advising a client. Without this role priming, the response might lack legal specificity or fail to address formal remedies available under contract law.",
+        "pt": "Ao atribuir à IA o papel de um \"advogado experiente em contratos\", o modelo se concentra em fornecer orientações juridicamente sólidas sobre violações contratuais. O prompt também especifica o público (um executivo de negócios), o que orienta a IA a usar \"linguagem simples\" enquanto ainda aborda conceitos jurídicos técnicos como notificações de violação e remédios previstos em lei comercial. A resposta resultante provavelmente incluirá etapas legais estruturadas, citações apropriadas à legislação relevante e conselhos práticos—tudo entregue no tom profissional de um advogado orientando um cliente. Sem essa preparação de papel, a resposta poderia carecer de especificidade jurídica ou deixar de abordar os remédios formais disponíveis sob a lei contratual.",
     }
     technique1_resource_title = {
-        'en': 'GenAI Prompting Tips for Lawyers',
-        'pt': 'Dicas de Prompting com IA Generativa para Advogados',
+        "en": "GenAI Prompting Tips for Lawyers",
+        "pt": "Dicas de Prompting com IA Generativa para Advogados",
     }
     technique1_resource_url = 'https://cl.cobar.org/departments/genai-prompting-tips-for-lawyers/'
     technique1_resource_description = {
-        'en': 'Comprehensive guide on effective prompting techniques for legal professionals',
-        'pt': 'Guia abrangente sobre técnicas eficazes de prompting para profissionais jurídicos',
+        "en": "Comprehensive guide on effective prompting techniques for legal professionals",
+        "pt": "Guia abrangente sobre técnicas eficazes de prompting para profissionais jurídicos",
     }
+    return
 
 
 @app.cell
@@ -420,42 +422,43 @@ def _():
     # Cell: Technique 2 Definition
     technique2_slug = 'context-rich'
     technique2_name = {
-        'en': 'Context-Rich Prompting (Including Details and Background)',
-        'pt': 'Prompting com Contexto Rico (Incluindo Detalhes e Antecedentes)',
+        "en": "Context-Rich Prompting (Including Details and Background)",
+        "pt": "Prompting com Contexto Rico (Incluindo Detalhes e Antecedentes)",
     }
     technique2_description = {
-        'en': 'Context-rich prompting means supplying the LLM with all relevant background facts, documents, and parameters of the query. Rather than asking a question in isolation, you include essential details such as the jurisdiction, involved parties, key facts, and the specific legal issue at hand. For instance, instead of "Can I fire an employee for social media posts?", you would ask, "As an employer in California, can I lawfully fire an at-will employee who posted negative comments about our company on social media?". You might also provide the text of a law or contract clause if interpretation is needed. By giving this specific context, you reduce ambiguity and guide the AI to consider the correct factual and legal framework.',
-        'pt': 'O prompting com contexto rico significa fornecer ao LLM todos os fatos relevantes de antecedentes, documentos e parâmetros da consulta. Em vez de fazer uma pergunta isolada, você inclui detalhes essenciais como a jurisdição, as partes envolvidas, fatos-chave e a questão jurídica específica em questão. Por exemplo, em vez de "Posso demitir um funcionário por postagens em redes sociais?", você perguntaria: "Como empregador em São Paulo, posso legalmente demitir um funcionário CLT que publicou comentários negativos sobre nossa empresa nas redes sociais?". Você também pode fornecer o texto de uma lei ou cláusula contratual se for necessária interpretação. Ao fornecer esse contexto específico, você reduz a ambiguidade e orienta a IA a considerar o quadro factual e jurídico correto.',
+        "en": "Context-rich prompting means supplying the LLM with all relevant background facts, documents, and parameters of the query. Rather than asking a question in isolation, you include essential details such as the jurisdiction, involved parties, key facts, and the specific legal issue at hand. For instance, instead of \"Can I fire an employee for social media posts?\", you would ask, \"As an employer in California, can I lawfully fire an at-will employee who posted negative comments about our company on social media?\". You might also provide the text of a law or contract clause if interpretation is needed. By giving this specific context, you reduce ambiguity and guide the AI to consider the correct factual and legal framework.",
+        "pt": "O prompting com contexto rico significa fornecer ao LLM todos os fatos relevantes de antecedentes, documentos e parâmetros da consulta. Em vez de fazer uma pergunta isolada, você inclui detalhes essenciais como a jurisdição, as partes envolvidas, fatos-chave e a questão jurídica específica em questão. Por exemplo, em vez de \"Posso demitir um funcionário por postagens em redes sociais?\", você perguntaria: \"Como empregador em São Paulo, posso legalmente demitir um funcionário CLT que publicou comentários negativos sobre nossa empresa nas redes sociais?\". Você também pode fornecer o texto de uma lei ou cláusula contratual se for necessária interpretação. Ao fornecer esse contexto específico, você reduz a ambiguidade e orienta a IA a considerar o quadro factual e jurídico correto.",
     }
     technique2_why_it_works = {
-        'en': "Context is a primary driver of LLM performance. Extensive user research shows that specific context helps the LLM identify the correct laws, facts, and analysis to apply. When the LLM has access to relevant law and facts, the model grounds its analysis in the proper legal framework and avoids introducing irrelevant factors. This leads to answers that address the actual issue at hand, rather than defaulting to generic statements about the law. Providing geographical context (e.g., jurisdiction) is particularly important, as laws vary significantly between states and countries. Even if LLMs know the law in theory, they're more likely to default to general interpretations without specific context.",
-        'pt': 'O contexto é um fator primordial para o desempenho do LLM. Pesquisas extensivas com usuários mostram que um contexto específico ajuda o LLM a identificar as leis, fatos e análises corretas a serem aplicadas. Quando o LLM tem acesso à legislação e fatos relevantes, o modelo fundamenta sua análise no quadro jurídico adequado e evita introduzir fatores irrelevantes. Isso leva a respostas que abordam a questão real em pauta, em vez de recorrer a declarações genéricas sobre a lei. Fornecer contexto geográfico (por exemplo, jurisdição) é particularmente importante, pois as leis variam significativamente entre estados e países. Mesmo que os LLMs conheçam a lei em teoria, eles tendem a recorrer a interpretações gerais sem um contexto específico.',
+        "en": "Context is a primary driver of LLM performance. Extensive user research shows that specific context helps the LLM identify the correct laws, facts, and analysis to apply. When the LLM has access to relevant law and facts, the model grounds its analysis in the proper legal framework and avoids introducing irrelevant factors. This leads to answers that address the actual issue at hand, rather than defaulting to generic statements about the law. Providing geographical context (e.g., jurisdiction) is particularly important, as laws vary significantly between states and countries. Even if LLMs know the law in theory, they're more likely to default to general interpretations without specific context.",
+        "pt": "O contexto é um fator primordial para o desempenho do LLM. Pesquisas extensivas com usuários mostram que um contexto específico ajuda o LLM a identificar as leis, fatos e análises corretas a serem aplicadas. Quando o LLM tem acesso à legislação e fatos relevantes, o modelo fundamenta sua análise no quadro jurídico adequado e evita introduzir fatores irrelevantes. Isso leva a respostas que abordam a questão real em pauta, em vez de recorrer a declarações genéricas sobre a lei. Fornecer contexto geográfico (por exemplo, jurisdição) é particularmente importante, pois as leis variam significativamente entre estados e países. Mesmo que os LLMs conheçam a lei em teoria, eles tendem a recorrer a interpretações gerais sem um contexto específico.",
     }
     technique2_example_question = {
-        'en': 'Is an oral contract enforceable?',
-        'pt': 'Um contrato verbal é válido?',
+        "en": "Is an oral contract enforceable?",
+        "pt": "Um contrato verbal é válido?",
     }
     technique2_example_bad_prompt = {
-        'en': 'Is an oral contract binding, or does it need to be in writing?',
-        'pt': 'Um contrato verbal é válido, ou precisa ser por escrito?',
+        "en": "Is an oral contract binding, or does it need to be in writing?",
+        "pt": "Um contrato verbal é válido, ou precisa ser por escrito?",
     }
     technique2_example_good_prompt = {
-        'en': "I'm a real estate investor in Florida. I verbally agreed to purchase a commercial property for $750,000, and we shook hands to seal the deal. However, we never signed any written contract. The seller now wants to back out because they received a higher offer. Given Florida's Statute of Frauds and relevant contract law, is this oral agreement legally enforceable for a real estate purchase of this value? What specific elements would I need to prove to potentially enforce this agreement, and what exceptions to the writing requirement might apply in this scenario?",
-        'pt': 'Sou um investidor imobiliário em São Paulo. Concordei verbalmente em comprar um imóvel comercial por R$ 750.000, e apertamos as mãos para fechar o negócio. No entanto, nunca assinamos nenhum contrato escrito. O vendedor agora quer desistir porque recebeu uma oferta maior. Considerando o artigo 108 do Código Civil brasileiro e a legislação contratual relevante, este acordo verbal é legalmente exigível para uma compra imobiliária deste valor? Quais elementos específicos eu precisaria provar para potencialmente fazer valer este acordo, e quais exceções ao requisito de escritura pública poderiam se aplicar neste cenário?',
+        "en": "I'm a real estate investor in Florida. I verbally agreed to purchase a commercial property for $750,000, and we shook hands to seal the deal. However, we never signed any written contract. The seller now wants to back out because they received a higher offer. Given Florida's Statute of Frauds and relevant contract law, is this oral agreement legally enforceable for a real estate purchase of this value? What specific elements would I need to prove to potentially enforce this agreement, and what exceptions to the writing requirement might apply in this scenario?",
+        "pt": "Sou um investidor imobiliário em São Paulo. Concordei verbalmente em comprar um imóvel comercial por R$ 750.000, e apertamos as mãos para fechar o negócio. No entanto, nunca assinamos nenhum contrato escrito. O vendedor agora quer desistir porque recebeu uma oferta maior. Considerando o artigo 108 do Código Civil brasileiro e a legislação contratual relevante, este acordo verbal é legalmente exigível para uma compra imobiliária deste valor? Quais elementos específicos eu precisaria provar para potencialmente fazer valer este acordo, e quais exceções ao requisito de escritura pública poderiam se aplicar neste cenário?",
     }
     technique2_example_explanation = {
-        'en': 'In the improved prompt, the context of Florida and real estate law immediately frames the question within a specific legal jurisdiction, triggering the model to apply the appropriate statutory framework (Florida\'s Statute of Frauds). The follow-up question asks for "specific elements" and "exceptions," directing the model to provide a comprehensive analysis rather than a simple yes/no answer. The context also makes clear that the question concerns enforceability in a specific scenario (a $750,000 commercial property sale) rather than oral contracts generally. This rich context guides the model to analyze whether any exceptions to the writing requirement might apply to this particular transaction, resulting in legally precise advice.',
-        'pt': 'No prompt aprimorado, o contexto de São Paulo e da lei imobiliária brasileira imediatamente enquadra a questão dentro de uma jurisdição legal específica, levando o modelo a aplicar o quadro estatutário apropriado (artigo 108 do Código Civil). A pergunta de acompanhamento solicita "elementos específicos" e "exceções", direcionando o modelo a fornecer uma análise abrangente em vez de uma simples resposta sim/não. O contexto também deixa claro que a questão diz respeito à exigibilidade em um cenário específico (uma venda de imóvel comercial de R$ 750.000) e não a contratos verbais em geral. Este contexto rico orienta o modelo a analisar se quaisquer exceções ao requisito de escritura pública podem se aplicar a esta transação específica, resultando em um aconselhamento juridicamente preciso.',
+        "en": "In the improved prompt, the context of Florida and real estate law immediately frames the question within a specific legal jurisdiction, triggering the model to apply the appropriate statutory framework (Florida's Statute of Frauds). The follow-up question asks for \"specific elements\" and \"exceptions,\" directing the model to provide a comprehensive analysis rather than a simple yes/no answer. The context also makes clear that the question concerns enforceability in a specific scenario (a $750,000 commercial property sale) rather than oral contracts generally. This rich context guides the model to analyze whether any exceptions to the writing requirement might apply to this particular transaction, resulting in legally precise advice.",
+        "pt": "No prompt aprimorado, o contexto de São Paulo e da lei imobiliária brasileira imediatamente enquadra a questão dentro de uma jurisdição legal específica, levando o modelo a aplicar o quadro estatutário apropriado (artigo 108 do Código Civil). A pergunta de acompanhamento solicita \"elementos específicos\" e \"exceções\", direcionando o modelo a fornecer uma análise abrangente em vez de uma simples resposta sim/não. O contexto também deixa claro que a questão diz respeito à exigibilidade em um cenário específico (uma venda de imóvel comercial de R$ 750.000) e não a contratos verbais em geral. Este contexto rico orienta o modelo a analisar se quaisquer exceções ao requisito de escritura pública podem se aplicar a esta transação específica, resultando em um aconselhamento juridicamente preciso.",
     }
     technique2_resource_title = {
-        'en': 'LLMs Can Generate Rich Context from Scratch',
-        'pt': 'LLMs Podem Gerar Contexto Rico do Zero',
+        "en": "LLMs Can Generate Rich Context from Scratch",
+        "pt": "LLMs Podem Gerar Contexto Rico do Zero",
     }
     technique2_resource_url = 'https://arxiv.org/abs/2307.07169'
     technique2_resource_description = {
-        'en': 'Research paper showing how context helps LLMs generate better results',
-        'pt': 'Artigo de pesquisa mostrando como o contexto ajuda os LLMs a gerar melhores resultados',
+        "en": "Research paper showing how context helps LLMs generate better results",
+        "pt": "Artigo de pesquisa mostrando como o contexto ajuda os LLMs a gerar melhores resultados",
     }
+    return
 
 
 @app.cell
@@ -463,44 +466,45 @@ def _():
     # Cell: Define Technique 3
     technique3_slug = 'constraint-based'
     technique3_name = {
-        'en': 'Constraint-Based Prompting (Conditional and Focused Instructions)',
-        'pt': 'Prompting Baseado em Restrições (Instruções Condicionais e Focadas)',
+        "en": "Constraint-Based Prompting (Conditional and Focused Instructions)",
+        "pt": "Prompting Baseado em Restrições (Instruções Condicionais e Focadas)",
     }
     technique3_description = {
-        'en': 'Constraint-based prompting introduces explicit conditions or limits into your prompt to narrow the scope of the AI\'s response. This can take the form of conditional instructions (e.g., "If X is true, do Y; if not, say it\'s not applicable.") or other constraints like word limits, format requirements, or focusing on a specific subsection of content. The goal is to have the LLM only address a particular area or follow certain rules, rather than responding broadly. For example, when analyzing a lengthy contract, you might write: "If the contract contains a termination clause, summarize that clause. Ignore other provisions." Similarly, you can constrain output length ("in 100 words") or style ("list 3 key points"). By setting clear boundaries or prerequisites in the prompt, you guide the model to produce a more targeted answer.',
-        'pt': 'O prompting baseado em restrições introduz condições ou limites explícitos em seu prompt para restringir o escopo da resposta da IA. Isso pode assumir a forma de instruções condicionais (por exemplo, "Se X for verdadeiro, faça Y; caso contrário, diga que não é aplicável.") ou outras restrições como limites de palavras, requisitos de formato ou foco em uma subseção específica do conteúdo. O objetivo é fazer com que o LLM aborde apenas uma área específica ou siga certas regras, em vez de responder amplamente. Por exemplo, ao analisar um contrato longo, você pode escrever: "Se o contrato contiver uma cláusula de rescisão, resuma essa cláusula. Ignore outras disposições." Da mesma forma, você pode restringir o comprimento da saída ("em 100 palavras") ou o estilo ("liste 3 pontos-chave"). Ao definir limites claros ou pré-requisitos no prompt, você orienta o modelo a produzir uma resposta mais direcionada.',
+        "en": "Constraint-based prompting introduces explicit conditions or limits into your prompt to narrow the scope of the AI's response. This can take the form of conditional instructions (e.g., \"If X is true, do Y; if not, say it's not applicable.\") or other constraints like word limits, format requirements, or focusing on a specific subsection of content. The goal is to have the LLM only address a particular area or follow certain rules, rather than responding broadly. For example, when analyzing a lengthy contract, you might write: \"If the contract contains a termination clause, summarize that clause. Ignore other provisions.\" Similarly, you can constrain output length (\"in 100 words\") or style (\"list 3 key points\"). By setting clear boundaries or prerequisites in the prompt, you guide the model to produce a more targeted answer.",
+        "pt": "O prompting baseado em restrições introduz condições ou limites explícitos em seu prompt para restringir o escopo da resposta da IA. Isso pode assumir a forma de instruções condicionais (por exemplo, \"Se X for verdadeiro, faça Y; caso contrário, diga que não é aplicável.\") ou outras restrições como limites de palavras, requisitos de formato ou foco em uma subseção específica do conteúdo. O objetivo é fazer com que o LLM aborde apenas uma área específica ou siga certas regras, em vez de responder amplamente. Por exemplo, ao analisar um contrato longo, você pode escrever: \"Se o contrato contiver uma cláusula de rescisão, resuma essa cláusula. Ignore outras disposições.\" Da mesma forma, você pode restringir o comprimento da saída (\"em 100 palavras\") ou o estilo (\"liste 3 pontos-chave\"). Ao definir limites claros ou pré-requisitos no prompt, você orienta o modelo a produzir uma resposta mais direcionada.",
     }
     technique3_why_it_works = {
-        'en': 'Constraints help narrow down the AI\'s focus so it doesn\'t stray into irrelevant territory. Large language models will try to use everything in the prompt to generate an answer, so if you tell it exactly what not to do or what specific subset to concentrate on, you reduce noise and off-point results. Legal professionals often only need certain information (for instance, just the holding of a case, or just one contract clause) — constraints ensure the AI filters its output to those needs. Authoritative sources recommend setting conditions or scope in prompts to make the analysis "contextually appropriate and relevant to your needs," thereby cutting out unnecessary results. Additionally, adding constraints like length or format limits can improve clarity; it forces the model to be concise and stick to the requested structure. In essence, constraint-based prompting is about precision: it directs the LLM to comply with specific requirements, much like a lawyer telling a junior associate, "Give me only the relevant facts on X and nothing else."',
-        'pt': 'Restrições ajudam a restringir o foco da IA para que ela não se desvie para território irrelevante. Modelos de linguagem grandes tentarão usar tudo no prompt para gerar uma resposta, então se você disser exatamente o que não fazer ou em qual subconjunto específico se concentrar, você reduz o ruído e os resultados fora do ponto. Profissionais jurídicos muitas vezes precisam apenas de certas informações (por exemplo, apenas a decisão de um caso, ou apenas uma cláusula contratual) — restrições garantem que a IA filtre sua saída para essas necessidades. Fontes autoritativas recomendam definir condições ou escopo nos prompts para tornar a análise "contextualmente apropriada e relevante para suas necessidades", eliminando assim resultados desnecessários. Além disso, adicionar restrições como limites de comprimento ou formato pode melhorar a clareza; força o modelo a ser conciso e a aderir à estrutura solicitada. Em essência, o prompting baseado em restrições é sobre precisão: direciona o LLM a cumprir requisitos específicos, muito como um advogado dizendo a um associado júnior: "Dê-me apenas os fatos relevantes sobre X e nada mais."',
+        "en": "Constraints help narrow down the AI's focus so it doesn't stray into irrelevant territory. Large language models will try to use everything in the prompt to generate an answer, so if you tell it exactly what not to do or what specific subset to concentrate on, you reduce noise and off-point results. Legal professionals often only need certain information (for instance, just the holding of a case, or just one contract clause) — constraints ensure the AI filters its output to those needs. Authoritative sources recommend setting conditions or scope in prompts to make the analysis \"contextually appropriate and relevant to your needs,\" thereby cutting out unnecessary results. Additionally, adding constraints like length or format limits can improve clarity; it forces the model to be concise and stick to the requested structure. In essence, constraint-based prompting is about precision: it directs the LLM to comply with specific requirements, much like a lawyer telling a junior associate, \"Give me only the relevant facts on X and nothing else.\"",
+        "pt": "Restrições ajudam a restringir o foco da IA para que ela não se desvie para território irrelevante. Modelos de linguagem grandes tentarão usar tudo no prompt para gerar uma resposta, então se você disser exatamente o que não fazer ou em qual subconjunto específico se concentrar, você reduz o ruído e os resultados fora do ponto. Profissionais jurídicos muitas vezes precisam apenas de certas informações (por exemplo, apenas a decisão de um caso, ou apenas uma cláusula contratual) — restrições garantem que a IA filtre sua saída para essas necessidades. Fontes autoritativas recomendam definir condições ou escopo nos prompts para tornar a análise \"contextualmente apropriada e relevante para suas necessidades\", eliminando assim resultados desnecessários. Além disso, adicionar restrições como limites de comprimento ou formato pode melhorar a clareza; força o modelo a ser conciso e a aderir à estrutura solicitada. Em essência, o prompting baseado em restrições é sobre precisão: direciona o LLM a cumprir requisitos específicos, muito como um advogado dizendo a um associado júnior: \"Dê-me apenas os fatos relevantes sobre X e nada mais.\"",
     }
     technique3_example_question = {
-        'en': 'Summarizing a specific part of a contract. (The user has a long employment contract but only cares about termination terms.)',
-        'pt': 'Resumindo uma parte específica de um contrato. (O usuário tem um longo contrato de trabalho, mas só se importa com os termos de rescisão.)',
+        "en": "Summarizing a specific part of a contract. (The user has a long employment contract but only cares about termination terms.)",
+        "pt": "Resumindo uma parte específica de um contrato. (O usuário tem um longo contrato de trabalho, mas só se importa com os termos de rescisão.)",
     }
     technique3_example_bad_prompt = {
-        'en': 'Summarize this employment contract.',
-        'pt': 'Resuma este contrato de trabalho.',
+        "en": "Summarize this employment contract.",
+        "pt": "Resuma este contrato de trabalho.",
     }
     technique3_example_good_prompt = {
-        'en': 'If the following employment contract contains a Termination or Severance clause, summarize those provisions in detail, focusing only on termination conditions and any severance pay terms. If not, respond that the contract has no such provisions. Ignore other sections.',
-        'pt': 'Se o seguinte contrato de trabalho contiver uma cláusula de Rescisão ou Indenização, resuma essas disposições em detalhes, focando apenas nas condições de rescisão e quaisquer termos de pagamento de indenização. Caso contrário, responda que o contrato não possui tais disposições. Ignore outras seções.',
+        "en": "If the following employment contract contains a Termination or Severance clause, summarize those provisions in detail, focusing only on termination conditions and any severance pay terms. If not, respond that the contract has no such provisions. Ignore other sections.",
+        "pt": "Se o seguinte contrato de trabalho contiver uma cláusula de Rescisão ou Indenização, resuma essas disposições em detalhes, focando apenas nas condições de rescisão e quaisquer termos de pagamento de indenização. Caso contrário, responda que o contrato não possui tais disposições. Ignore outras seções.",
     }
     technique3_example_explanation = {
-        'en': "The prompt explicitly sets a condition and scope: it tells the AI to look for termination or severance clauses and report on those and nothing else. It also provides a conditional fallback (\\\"if not, say there are none\\\") so the AI won't wander off-topic if the condition isn't met. This focused instruction ensures the AI's output will directly address the user's need (termination terms) without extraneous contract details. It also implicitly instructs the AI to read the contract text (provided in the prompt) with an eye only for a specific subject, which is akin to running a targeted search within the text.\\n\\nExample output: \\\"Termination Clause (Section 5): The contract allows either party to terminate with 30 days' written notice. However, if the employee is terminated for cause (defined as gross misconduct or violation of company policy), the employer can terminate immediately without notice. The clause specifies that termination must be communicated in writing and outlines a post-termination non-compete period of 6 months.\\n\\nSeverance Provision (Section 6): In cases of termination without cause, the employee is entitled to a severance payment equal to 3 months' salary. The severance is conditioned on the employee signing a release of claims. No severance is given if the termination is for cause or if the employee resigns.\\\"",
-        'pt': 'O prompt define explicitamente uma condição e escopo: diz à IA para procurar cláusulas de rescisão ou indenização e relatar sobre elas e nada mais. Ele também fornece um fallback condicional (\\"caso contrário, diga que não há nenhuma\\") para que a IA não se desvie do tópico se a condição não for atendida. Esta instrução focada garante que a saída da IA abordará diretamente a necessidade do usuário (termos de rescisão) sem detalhes contratuais estranhos. Também instrui implicitamente a IA a ler o texto do contrato (fornecido no prompt) com atenção apenas para um assunto específico, o que é semelhante a executar uma pesquisa direcionada dentro do texto.\\\\n\\\\nExemplo de saída: \\"Cláusula de Rescisão (Seção 5): O contrato permite que qualquer uma das partes rescinda com 30 dias de aviso prévio por escrito. No entanto, se o funcionário for demitido por justa causa (definida como má conduta grave ou violação da política da empresa), o empregador pode rescindir imediatamente sem aviso prévio. A cláusula especifica que a rescisão deve ser comunicada por escrito e descreve um período de não concorrência pós-rescisão de 6 meses.\\\\n\\\\nDisposição de Indenização (Seção 6): Em casos de rescisão sem justa causa, o funcionário tem direito a um pagamento de indenização igual a 3 meses de salário. A indenização está condicionada à assinatura de um termo de quitação pelo funcionário. Nenhuma indenização é dada se a rescisão for por justa causa ou se o funcionário renunciar.\\"',
+        "en": "The prompt explicitly sets a condition and scope: it tells the AI to look for termination or severance clauses and report on those and nothing else. It also provides a conditional fallback (\\\"if not, say there are none\\\") so the AI won't wander off-topic if the condition isn't met. This focused instruction ensures the AI's output will directly address the user's need (termination terms) without extraneous contract details. It also implicitly instructs the AI to read the contract text (provided in the prompt) with an eye only for a specific subject, which is akin to running a targeted search within the text.\\n\\nExample output: \\\"Termination Clause (Section 5): The contract allows either party to terminate with 30 days' written notice. However, if the employee is terminated for cause (defined as gross misconduct or violation of company policy), the employer can terminate immediately without notice. The clause specifies that termination must be communicated in writing and outlines a post-termination non-compete period of 6 months.\\n\\nSeverance Provision (Section 6): In cases of termination without cause, the employee is entitled to a severance payment equal to 3 months' salary. The severance is conditioned on the employee signing a release of claims. No severance is given if the termination is for cause or if the employee resigns.\\\"",
+        "pt": "O prompt define explicitamente uma condição e escopo: diz à IA para procurar cláusulas de rescisão ou indenização e relatar sobre elas e nada mais. Ele também fornece um fallback condicional (\\\"caso contrário, diga que não há nenhuma\\\") para que a IA não se desvie do tópico se a condição não for atendida. Esta instrução focada garante que a saída da IA abordará diretamente a necessidade do usuário (termos de rescisão) sem detalhes contratuais estranhos. Também instrui implicitamente a IA a ler o texto do contrato (fornecido no prompt) com atenção apenas para um assunto específico, o que é semelhante a executar uma pesquisa direcionada dentro do texto.\\\\n\\\\nExemplo de saída: \\\"Cláusula de Rescisão (Seção 5): O contrato permite que qualquer uma das partes rescinda com 30 dias de aviso prévio por escrito. No entanto, se o funcionário for demitido por justa causa (definida como má conduta grave ou violação da política da empresa), o empregador pode rescindir imediatamente sem aviso prévio. A cláusula especifica que a rescisão deve ser comunicada por escrito e descreve um período de não concorrência pós-rescisão de 6 meses.\\\\n\\\\nDisposição de Indenização (Seção 6): Em casos de rescisão sem justa causa, o funcionário tem direito a um pagamento de indenização igual a 3 meses de salário. A indenização está condicionada à assinatura de um termo de quitação pelo funcionário. Nenhuma indenização é dada se a rescisão for por justa causa ou se o funcionário renunciar.\\\"",
     }
     technique3_resource_title = {
-        'en': 'Prompt Engineering and Priming in Law',
-        'pt': 'Engenharia de Prompt e Priming em Direito',
+        "en": "Prompt Engineering and Priming in Law",
+        "pt": "Engenharia de Prompt e Priming em Direito",
     }
     technique3_resource_url = (
         'https://www.researchgate.net/publication/382878312_Prompt_Engineering_and_Priming_in_Law'
     )
     technique3_resource_description = {
-        'en': 'Research on effective prompt engineering techniques for legal applications',
-        'pt': 'Pesquisa sobre técnicas eficazes de engenharia de prompt para aplicações jurídicas',
+        "en": "Research on effective prompt engineering techniques for legal applications",
+        "pt": "Pesquisa sobre técnicas eficazes de engenharia de prompt para aplicações jurídicas",
     }
+    return
 
 
 @app.cell
@@ -508,124 +512,126 @@ def _():
     # Cell: Technique 4 Definition
     technique4_slug = 'example-few-shot'
     technique4_name = {
-        'en': 'Example (Few-Shot) Prompting (Providing Exemplars or Templates)',
-        'pt': 'Prompt por Exemplos (Few-Shot) (Fornecimento de Exemplares ou Modelos)',
+        "en": "Example (Few-Shot) Prompting (Providing Exemplars or Templates)",
+        "pt": "Prompt por Exemplos (Few-Shot) (Fornecimento de Exemplares ou Modelos)",
     }
     technique4_description = {
-        'en': "Example prompting, also known as few-shot prompting, involves including sample inputs/outputs or a template in your prompt to demonstrate the desired format, style, or level of detail. This can mean giving the AI one or more Q&A examples before your actual question, or providing a model answer structure. In the legal context, you might show an example of a well-written clause, then ask the AI to draft a similar clause for a new scenario. For instance: \\\"Example – Clause: 'In the event of breach, the non-breaching party shall… [legal language] …' Now draft a liability waiver clause for a service contract in a similar style.\\\" Another use is to provide a few sample legal questions with correct answers (few-shot Q&A) before posing a new question, which primes the model on the approach. By doing so, you leverage the AI's pattern recognition strength: it will mimic the structure or reasoning of the examples when generating the new answer.",
-        'pt': 'O prompt por exemplos, também conhecido como prompt few-shot, envolve incluir exemplos de entradas/saídas ou um modelo em seu prompt para demonstrar o formato, estilo ou nível de detalhe desejado. Isso pode significar dar à IA um ou mais exemplos de P&R antes de sua pergunta real, ou fornecer uma estrutura de resposta modelo. No contexto jurídico, você pode mostrar um exemplo de uma cláusula bem escrita e, em seguida, pedir à IA para redigir uma cláusula semelhante para um novo cenário. Por exemplo: \\"Exemplo – Cláusula: \\\\\\\'Em caso de violação, a parte não infratora deverá… [linguagem jurídica] …\\\\\\\' Agora redija uma cláusula de isenção de responsabilidade para um contrato de serviço em estilo semelhante.\\" Outro uso é fornecer algumas perguntas legais de exemplo com respostas corretas (P&R few-shot) antes de fazer uma nova pergunta, o que prepara o modelo na abordagem. Ao fazer isso, você aproveita a força de reconhecimento de padrões da IA: ela imitará a estrutura ou o raciocínio dos exemplos ao gerar a nova resposta.',
+        "en": "Example prompting, also known as few-shot prompting, involves including sample inputs/outputs or a template in your prompt to demonstrate the desired format, style, or level of detail. This can mean giving the AI one or more Q&A examples before your actual question, or providing a model answer structure. In the legal context, you might show an example of a well-written clause, then ask the AI to draft a similar clause for a new scenario. For instance: \\\"Example – Clause: 'In the event of breach, the non-breaching party shall… [legal language] …' Now draft a liability waiver clause for a service contract in a similar style.\\\" Another use is to provide a few sample legal questions with correct answers (few-shot Q&A) before posing a new question, which primes the model on the approach. By doing so, you leverage the AI's pattern recognition strength: it will mimic the structure or reasoning of the examples when generating the new answer.",
+        "pt": "O prompt por exemplos, também conhecido como prompt few-shot, envolve incluir exemplos de entradas/saídas ou um modelo em seu prompt para demonstrar o formato, estilo ou nível de detalhe desejado. Isso pode significar dar à IA um ou mais exemplos de P&R antes de sua pergunta real, ou fornecer uma estrutura de resposta modelo. No contexto jurídico, você pode mostrar um exemplo de uma cláusula bem escrita e, em seguida, pedir à IA para redigir uma cláusula semelhante para um novo cenário. Por exemplo: \\\"Exemplo – Cláusula: \\\\\\'Em caso de violação, a parte não infratora deverá… [linguagem jurídica] …\\\\\\\' Agora redija uma cláusula de isenção de responsabilidade para um contrato de serviço em estilo semelhante.\\\" Outro uso é fornecer algumas perguntas legais de exemplo com respostas corretas (P&R few-shot) antes de fazer uma nova pergunta, o que prepara o modelo na abordagem. Ao fazer isso, você aproveita a força de reconhecimento de padrões da IA: ela imitará a estrutura ou o raciocínio dos exemplos ao gerar a nova resposta.",
     }
     technique4_why_it_works = {
-        'en': 'Large language models learn and operate by recognizing patterns. When you provide a sample of a good response, you essentially program the model with a mini example of the task at hand. The model will infer the style, tone, and logic from the example and apply it to the new prompt. This few-shot prompting technique is well-documented to improve performance, especially for niche tasks or formats that the model might not guess on its own. Instead of relying on the AI to deduce the desired output style, you show it explicitly. Authoritative guidelines for legal AI suggest offering a template or bullet-point structure to guide the AI\'s response. For example, telling the model, "Follow this structure: 1) Facts, 2) Issue, 3) Holding" can lead to an answer in that format. Similarly, providing a placeholder-filled template (e.g., using bracketed placeholders in an example contract clause) lets the AI know exactly how to format the answer. By demonstration, we reduce ambiguity — the AI doesn\'t have to "figure out" the format or level of detail, it just continues the pattern. This results in output that is closer to the user\'s expected answer in both form and substance.',
-        'pt': 'Modelos de linguagem grandes aprendem e operam reconhecendo padrões. Quando você fornece uma amostra de uma boa resposta, você essencialmente programa o modelo com um mini exemplo da tarefa em questão. O modelo inferirá o estilo, tom e lógica do exemplo e o aplicará ao novo prompt. Esta técnica de prompt few-shot é bem documentada para melhorar o desempenho, especialmente para tarefas de nicho ou formatos que o modelo pode não adivinhar por conta própria. Em vez de confiar na IA para deduzir o estilo de saída desejado, você o mostra explicitamente. Diretrizes autoritativas para IA jurídica sugerem oferecer um modelo ou estrutura de pontos para guiar a resposta da IA. Por exemplo, dizer ao modelo: "Siga esta estrutura: 1) Fatos, 2) Questão, 3) Decisão" pode levar a uma resposta nesse formato. Da mesma forma, fornecer um modelo preenchido com espaços reservados (por exemplo, usando espaços reservados entre colchetes em uma cláusula de contrato de exemplo) permite que a IA saiba exatamente como formatar a resposta. Por demonstração, reduzimos a ambiguidade — a IA não precisa "descobrir" o formato ou o nível de detalhe, ela apenas continua o padrão. Isso resulta em uma saída mais próxima da resposta esperada pelo usuário, tanto na forma quanto na substância.',
+        "en": "Large language models learn and operate by recognizing patterns. When you provide a sample of a good response, you essentially program the model with a mini example of the task at hand. The model will infer the style, tone, and logic from the example and apply it to the new prompt. This few-shot prompting technique is well-documented to improve performance, especially for niche tasks or formats that the model might not guess on its own. Instead of relying on the AI to deduce the desired output style, you show it explicitly. Authoritative guidelines for legal AI suggest offering a template or bullet-point structure to guide the AI's response. For example, telling the model, \"Follow this structure: 1) Facts, 2) Issue, 3) Holding\" can lead to an answer in that format. Similarly, providing a placeholder-filled template (e.g., using bracketed placeholders in an example contract clause) lets the AI know exactly how to format the answer. By demonstration, we reduce ambiguity — the AI doesn't have to \"figure out\" the format or level of detail, it just continues the pattern. This results in output that is closer to the user's expected answer in both form and substance.",
+        "pt": "Modelos de linguagem grandes aprendem e operam reconhecendo padrões. Quando você fornece uma amostra de uma boa resposta, você essencialmente programa o modelo com um mini exemplo da tarefa em questão. O modelo inferirá o estilo, tom e lógica do exemplo e o aplicará ao novo prompt. Esta técnica de prompt few-shot é bem documentada para melhorar o desempenho, especialmente para tarefas de nicho ou formatos que o modelo pode não adivinhar por conta própria. Em vez de confiar na IA para deduzir o estilo de saída desejado, você o mostra explicitamente. Diretrizes autoritativas para IA jurídica sugerem oferecer um modelo ou estrutura de pontos para guiar a resposta da IA. Por exemplo, dizer ao modelo: \"Siga esta estrutura: 1) Fatos, 2) Questão, 3) Decisão\" pode levar a uma resposta nesse formato. Da mesma forma, fornecer um modelo preenchido com espaços reservados (por exemplo, usando espaços reservados entre colchetes em uma cláusula de contrato de exemplo) permite que a IA saiba exatamente como formatar a resposta. Por demonstração, reduzimos a ambiguidade — a IA não precisa \"descobrir\" o formato ou o nível de detalhe, ela apenas continua o padrão. Isso resulta em uma saída mais próxima da resposta esperada pelo usuário, tanto na forma quanto na substância.",
     }
     technique4_example_question = {
-        'en': 'Drafting a contract clause with a specific style. (The user wants a liability waiver clause similar to an example they like.)',
-        'pt': 'Redigindo uma cláusula contratual com um estilo específico. (O usuário deseja uma cláusula de isenção de responsabilidade semelhante a um exemplo que ele gosta.)',
+        "en": "Drafting a contract clause with a specific style. (The user wants a liability waiver clause similar to an example they like.)",
+        "pt": "Redigindo uma cláusula contratual com um estilo específico. (O usuário deseja uma cláusula de isenção de responsabilidade semelhante a um exemplo que ele gosta.)",
     }
     technique4_example_bad_prompt = {
-        'en': '"Draft a liability waiver clause for a service contract."',
-        'pt': '"Redija uma cláusula de isenção de responsabilidade para um contrato de serviço."',
+        "en": "\"Draft a liability waiver clause for a service contract.\"",
+        "pt": "\"Redija uma cláusula de isenção de responsabilidade para um contrato de serviço.\"",
     }
     technique4_example_good_prompt = {
-        'en': '"Draft a liability waiver clause for a service contract. Use the following clause as a style guide and follow a similar structure and tone:\\n\\nExample Clause: \\"In no event shall [Party] be liable for any indirect, incidental, or consequential damages arising out of or related to this Agreement, except in cases of gross negligence or willful misconduct…\\"\\n\\nNow, write the liability waiver for our contract in a similar style, adjusting details for our context (a software service provider)."',
-        'pt': '"Redija uma cláusula de isenção de responsabilidade para um contrato de serviço. Use a seguinte cláusula como guia de estilo e siga uma estrutura e tom semelhantes:\\\\n\\\\nCláusula Exemplo: \\"Em nenhuma hipótese [Parte] será responsável por quaisquer danos indiretos, incidentais ou consequenciais decorrentes de ou relacionados a este Contrato, exceto em casos de negligência grave ou má conduta intencional…\\"\\\\n\\\\nAgora, escreva a isenção de responsabilidade para nosso contrato em estilo semelhante, ajustando os detalhes para nosso contexto (um provedor de serviços de software)."',
+        "en": "\"Draft a liability waiver clause for a service contract. Use the following clause as a style guide and follow a similar structure and tone:\\n\\nExample Clause: \\\"In no event shall [Party] be liable for any indirect, incidental, or consequential damages arising out of or related to this Agreement, except in cases of gross negligence or willful misconduct…\\\"\\n\\nNow, write the liability waiver for our contract in a similar style, adjusting details for our context (a software service provider).\"",
+        "pt": "\"Redija uma cláusula de isenção de responsabilidade para um contrato de serviço. Use a seguinte cláusula como guia de estilo e siga uma estrutura e tom semelhantes:\\\\n\\\\nCláusula Exemplo: \\\"Em nenhuma hipótese [Parte] será responsável por quaisquer danos indiretos, incidentais ou consequenciais decorrentes de ou relacionados a este Contrato, exceto em casos de negligência grave ou má conduta intencional…\\\"\\\\n\\\\nAgora, escreva a isenção de responsabilidade para nosso contrato em estilo semelhante, ajustando os detalhes para nosso contexto (um provedor de serviços de software).\"",
     }
     technique4_example_explanation = {
-        'en': 'The good prompt provides a concrete example clause that demonstrates the desired style (it\'s concise, includes a standard exclusion of indirect damages, and has an exception for gross negligence). By instructing the AI to use it as a guide, the model will mirror that phrasing and structure when drafting the new clause. The prompt also specifies the context (software service provider) so the AI can adjust any particulars (for instance, referencing "software or data" in the waiver if relevant). This approach reduces the guesswork for the AI – it knows exactly the kind of clause the user wants, resulting in a clause that likely aligns with industry standards or the user\'s preference as shown in the example.\\n\\nExample output: \\"Liability Waiver Clause: In no event shall either party be liable to the other for any indirect, special, incidental, or consequential damages (including lost profits or data loss) arising out of or related to this Agreement or the services provided, even if such party has been advised of the possibility of such damages. The foregoing limitation applies to all causes of action, whether arising in contract, tort, or otherwise, except that nothing in this Agreement shall limit or exclude liability for a party\'s gross negligence or willful misconduct.\\"\\n\\nThe output clause closely follows the style of the example: it uses the \\"In no event shall…\\" phrasing, disclaims indirect damages, and includes an exception for gross negligence/willful misconduct. By contrast, a clause generated without the example might have been structured differently or missed including the exception. The example prompt ensured the result was aligned with the desired template.',
-        'pt': 'O bom prompt fornece uma cláusula de exemplo concreta que demonstra o estilo desejado (é concisa, inclui uma exclusão padrão de danos indiretos e tem uma exceção para negligência grave). Ao instruir a IA a usá-la como guia, o modelo espelhará essa fraseologia e estrutura ao redigir a nova cláusula. O prompt também especifica o contexto (provedor de serviços de software) para que a IA possa ajustar quaisquer particularidades (por exemplo, referenciando "software ou dados" na isenção, se relevante). Essa abordagem reduz a adivinhação para a IA – ela sabe exatamente o tipo de cláusula que o usuário deseja, resultando em uma cláusula que provavelmente se alinha aos padrões da indústria ou à preferência do usuário, como mostrado no exemplo.\\\\n\\\\nExemplo de saída: \\"Cláusula de Isenção de Responsabilidade: Em nenhuma hipótese qualquer das partes será responsável perante a outra por quaisquer danos indiretos, especiais, incidentais ou consequenciais (incluindo lucros cessantes ou perda de dados) decorrentes de ou relacionados a este Contrato ou aos serviços prestados, mesmo que tal parte tenha sido avisada da possibilidade de tais danos. A limitação precedente aplica-se a todas as causas de pedir, quer surjam em contrato, ato ilícito ou de outra forma, exceto que nada neste Contrato limitará ou excluirá a responsabilidade por negligência grave ou má conduta intencional de uma parte.\\"\\\\n\\\\nA cláusula de saída segue de perto o estilo do exemplo: usa a fraseologia \\"Em nenhuma hipótese…\\", isenta danos indiretos e inclui uma exceção para negligência grave/má conduta intencional. Em contraste, uma cláusula gerada sem o exemplo poderia ter sido estruturada de forma diferente ou ter deixado de incluir a exceção. O prompt de exemplo garantiu que o resultado estivesse alinhado com o modelo desejado.',
+        "en": "The good prompt provides a concrete example clause that demonstrates the desired style (it's concise, includes a standard exclusion of indirect damages, and has an exception for gross negligence). By instructing the AI to use it as a guide, the model will mirror that phrasing and structure when drafting the new clause. The prompt also specifies the context (software service provider) so the AI can adjust any particulars (for instance, referencing \"software or data\" in the waiver if relevant). This approach reduces the guesswork for the AI – it knows exactly the kind of clause the user wants, resulting in a clause that likely aligns with industry standards or the user's preference as shown in the example.\\n\\nExample output: \\\"Liability Waiver Clause: In no event shall either party be liable to the other for any indirect, special, incidental, or consequential damages (including lost profits or data loss) arising out of or related to this Agreement or the services provided, even if such party has been advised of the possibility of such damages. The foregoing limitation applies to all causes of action, whether arising in contract, tort, or otherwise, except that nothing in this Agreement shall limit or exclude liability for a party's gross negligence or willful misconduct.\\\"\\n\\nThe output clause closely follows the style of the example: it uses the \\\"In no event shall…\\\" phrasing, disclaims indirect damages, and includes an exception for gross negligence/willful misconduct. By contrast, a clause generated without the example might have been structured differently or missed including the exception. The example prompt ensured the result was aligned with the desired template.",
+        "pt": "O bom prompt fornece uma cláusula de exemplo concreta que demonstra o estilo desejado (é concisa, inclui uma exclusão padrão de danos indiretos e tem uma exceção para negligência grave). Ao instruir a IA a usá-la como guia, o modelo espelhará essa fraseologia e estrutura ao redigir a nova cláusula. O prompt também especifica o contexto (provedor de serviços de software) para que a IA possa ajustar quaisquer particularidades (por exemplo, referenciando \"software ou dados\" na isenção, se relevante). Essa abordagem reduz a adivinhação para a IA – ela sabe exatamente o tipo de cláusula que o usuário deseja, resultando em uma cláusula que provavelmente se alinha aos padrões da indústria ou à preferência do usuário, como mostrado no exemplo.\\\\n\\\\nExemplo de saída: \\\"Cláusula de Isenção de Responsabilidade: Em nenhuma hipótese qualquer das partes será responsável perante a outra por quaisquer danos indiretos, especiais, incidentais ou consequenciais (incluindo lucros cessantes ou perda de dados) decorrentes de ou relacionados a este Contrato ou aos serviços prestados, mesmo que tal parte tenha sido avisada da possibilidade de tais danos. A limitação precedente aplica-se a todas as causas de pedir, quer surjam em contrato, ato ilícito ou de outra forma, exceto que nada neste Contrato limitará ou excluirá a responsabilidade por negligência grave ou má conduta intencional de uma parte.\\\"\\\\n\\\\nA cláusula de saída segue de perto o estilo do exemplo: usa a fraseologia \\\"Em nenhuma hipótese…\\\", isenta danos indiretos e inclui uma exceção para negligência grave/má conduta intencional. Em contraste, uma cláusula gerada sem o exemplo poderia ter sido estruturada de forma diferente ou ter deixado de incluir a exceção. O prompt de exemplo garantiu que o resultado estivesse alinhado com o modelo desejado.",
     }
     technique4_resource_title = {
-        'en': 'Minnesota Law Review Article on LLMs in Legal Practice',
-        'pt': 'Artigo da Minnesota Law Review sobre LLMs na Prática Jurídica',
+        "en": "Minnesota Law Review Article on LLMs in Legal Practice",
+        "pt": "Artigo da Minnesota Law Review sobre LLMs na Prática Jurídica",
     }
     technique4_resource_url = (
         'https://minnesotalawreview.org/wp-content/uploads/2023/10/FL1-Choi-Schwarcz.pdf'
     )
     technique4_resource_description = {
-        'en': 'Comprehensive exploration of few-shot prompting techniques in legal contexts',
-        'pt': 'Exploração abrangente de técnicas de prompt few-shot em contextos jurídicos',
+        "en": "Comprehensive exploration of few-shot prompting techniques in legal contexts",
+        "pt": "Exploração abrangente de técnicas de prompt few-shot em contextos jurídicos",
     }
+    return
 
 
 @app.cell
 def _():
     technique5_slug = 'step-by-step'
     technique5_name = {
-        'en': 'Step-by-Step Prompting (Chain-of-Thought Legal Reasoning)',
-        'pt': 'Prompting Passo a Passo (Raciocínio Jurídico em Cadeia de Pensamento)',
+        "en": "Step-by-Step Prompting (Chain-of-Thought Legal Reasoning)",
+        "pt": "Prompting Passo a Passo (Raciocínio Jurídico em Cadeia de Pensamento)",
     }
     technique5_description = {
-        'en': 'Step-by-step prompting involves asking the LLM to work through the problem in a logical sequence, rather than jumping straight to a conclusion. In legal tasks, this often means prompting the model to apply a structured analysis (for example, the IRAC method: Issue, Rule, Application, Conclusion, or breaking down elements of a legal test). You can achieve this by explicitly instructing the AI how to structure its reasoning. For instance: "Analyze this scenario step by step: first identify the legal issues, then state the relevant law for each issue, apply the facts, and finally give a conclusion." or simply "Let\'s think this through step-by-step.". Another variant is telling the model to enumerate its reasoning (e.g., "1, 2, 3…"). The idea is to mimic how a lawyer would deliberate on a problem methodically. This technique is especially useful for complex scenarios with multiple factors (such as determining if negligence is present, which requires analyzing duty, breach, causation, damages in turn).',
-        'pt': 'O prompting passo a passo envolve pedir ao LLM para trabalhar o problema em uma sequência lógica, em vez de pular direto para uma conclusão. Em tarefas jurídicas, isso geralmente significa solicitar ao modelo que aplique uma análise estruturada (por exemplo, o método IRAC: Questão, Regra, Aplicação, Conclusão, ou decompor elementos de um teste legal). Você pode conseguir isso instruindo explicitamente a IA sobre como estruturar seu raciocínio. Por exemplo: "Analise este cenário passo a passo: primeiro identifique as questões legais, depois declare a lei relevante para cada questão, aplique os fatos e, finalmente, dê uma conclusão." ou simplesmente "Vamos pensar nisso passo a passo.". Outra variante é dizer ao modelo para enumerar seu raciocínio (por exemplo, "1, 2, 3…"). A ideia é imitar como um advogado deliberaria sobre um problema metodicamente. Esta técnica é especialmente útil para cenários complexos com múltiplos fatores (como determinar se há negligência, o que requer análise de dever, violação, causalidade, danos, sucessivamente).',
+        "en": "Step-by-step prompting involves asking the LLM to work through the problem in a logical sequence, rather than jumping straight to a conclusion. In legal tasks, this often means prompting the model to apply a structured analysis (for example, the IRAC method: Issue, Rule, Application, Conclusion, or breaking down elements of a legal test). You can achieve this by explicitly instructing the AI how to structure its reasoning. For instance: \"Analyze this scenario step by step: first identify the legal issues, then state the relevant law for each issue, apply the facts, and finally give a conclusion.\" or simply \"Let's think this through step-by-step.\". Another variant is telling the model to enumerate its reasoning (e.g., \"1, 2, 3…\"). The idea is to mimic how a lawyer would deliberate on a problem methodically. This technique is especially useful for complex scenarios with multiple factors (such as determining if negligence is present, which requires analyzing duty, breach, causation, damages in turn).",
+        "pt": "O prompting passo a passo envolve pedir ao LLM para trabalhar o problema em uma sequência lógica, em vez de pular direto para uma conclusão. Em tarefas jurídicas, isso geralmente significa solicitar ao modelo que aplique uma análise estruturada (por exemplo, o método IRAC: Questão, Regra, Aplicação, Conclusão, ou decompor elementos de um teste legal). Você pode conseguir isso instruindo explicitamente a IA sobre como estruturar seu raciocínio. Por exemplo: \"Analise este cenário passo a passo: primeiro identifique as questões legais, depois declare a lei relevante para cada questão, aplique os fatos e, finalmente, dê uma conclusão.\" ou simplesmente \"Vamos pensar nisso passo a passo.\". Outra variante é dizer ao modelo para enumerar seu raciocínio (por exemplo, \"1, 2, 3…\"). A ideia é imitar como um advogado deliberaria sobre um problema metodicamente. Esta técnica é especialmente útil para cenários complexos com múltiplos fatores (como determinar se há negligência, o que requer análise de dever, violação, causalidade, danos, sucessivamente).",
     }
     technique5_why_it_works = {
-        'en': 'Prompting an LLM to show its work leads to more transparent and often more accurate results. Recent findings highlight that users can significantly improve answer quality by asking the model to "reason step by step." This approach, known as chain-of-thought prompting, has been widely adopted because it helps the AI break down complex tasks instead of making a leap and possibly an error. By structuring the analysis (much like IRAC or element-by-element examination), you not only get a thorough answer but can also verify each step of the reasoning. If the model makes a mistake in a step, you can catch it and correct it, resulting in a more reliable final answer. In legal reasoning, where analytical rigor is key, this method ensures the AI considers all necessary components (for example, each element of a claim or each prong of a test). It effectively guides the model to "think like a lawyer," aligning its process with how a legal professional would logically approach the issue. Even if newer LLMs can sometimes do this internally, explicitly prompting for step-by-step reasoning is a safe way to enforce completeness and clarity in the output.',
-        'pt': 'Solicitar a um LLM que mostre seu trabalho leva a resultados mais transparentes e muitas vezes mais precisos. Descobertas recentes destacam que os usuários podem melhorar significativamente a qualidade da resposta pedindo ao modelo para "raciocinar passo a passo". Essa abordagem, conhecida como prompting em cadeia de pensamento, foi amplamente adotada porque ajuda a IA a decompor tarefas complexas em vez de dar um salto e possivelmente cometer um erro. Ao estruturar a análise (muito como IRAC ou exame elemento por elemento), você não apenas obtém uma resposta completa, mas também pode verificar cada etapa do raciocínio. Se o modelo cometer um erro em uma etapa, você pode detectá-lo e corrigi-lo, resultando em uma resposta final mais confiável. No raciocínio jurídico, onde o rigor analítico é fundamental, este método garante que a IA considere todos os componentes necessários (por exemplo, cada elemento de uma reivindicação ou cada parte de um teste). Ele efetivamente guia o modelo a "pensar como um advogado", alinhando seu processo com a forma como um profissional jurídico abordaria logicamente a questão. Mesmo que LLMs mais recentes possam às vezes fazer isso internamente, solicitar explicitamente o raciocínio passo a passo é uma maneira segura de impor completude e clareza na saída.',
+        "en": "Prompting an LLM to show its work leads to more transparent and often more accurate results. Recent findings highlight that users can significantly improve answer quality by asking the model to \"reason step by step.\" This approach, known as chain-of-thought prompting, has been widely adopted because it helps the AI break down complex tasks instead of making a leap and possibly an error. By structuring the analysis (much like IRAC or element-by-element examination), you not only get a thorough answer but can also verify each step of the reasoning. If the model makes a mistake in a step, you can catch it and correct it, resulting in a more reliable final answer. In legal reasoning, where analytical rigor is key, this method ensures the AI considers all necessary components (for example, each element of a claim or each prong of a test). It effectively guides the model to \"think like a lawyer,\" aligning its process with how a legal professional would logically approach the issue. Even if newer LLMs can sometimes do this internally, explicitly prompting for step-by-step reasoning is a safe way to enforce completeness and clarity in the output.",
+        "pt": "Solicitar a um LLM que mostre seu trabalho leva a resultados mais transparentes e muitas vezes mais precisos. Descobertas recentes destacam que os usuários podem melhorar significativamente a qualidade da resposta pedindo ao modelo para \"raciocinar passo a passo\". Essa abordagem, conhecida como prompting em cadeia de pensamento, foi amplamente adotada porque ajuda a IA a decompor tarefas complexas em vez de dar um salto e possivelmente cometer um erro. Ao estruturar a análise (muito como IRAC ou exame elemento por elemento), você não apenas obtém uma resposta completa, mas também pode verificar cada etapa do raciocínio. Se o modelo cometer um erro em uma etapa, você pode detectá-lo e corrigi-lo, resultando em uma resposta final mais confiável. No raciocínio jurídico, onde o rigor analítico é fundamental, este método garante que a IA considere todos os componentes necessários (por exemplo, cada elemento de uma reivindicação ou cada parte de um teste). Ele efetivamente guia o modelo a \"pensar como um advogado\", alinhando seu processo com a forma como um profissional jurídico abordaria logicamente a questão. Mesmo que LLMs mais recentes possam às vezes fazer isso internamente, solicitar explicitamente o raciocínio passo a passo é uma maneira segura de impor completude e clareza na saída.",
     }
     technique5_example_question = {
-        'en': 'Assessing legal liability with multiple elements. (A customer slipped and fell in a store – does the store have negligence liability?)',
-        'pt': 'Avaliando a responsabilidade legal com múltiplos elementos. (Um cliente escorregou e caiu em uma loja – a loja tem responsabilidade por negligência?)',
+        "en": "Assessing legal liability with multiple elements. (A customer slipped and fell in a store – does the store have negligence liability?)",
+        "pt": "Avaliando a responsabilidade legal com múltiplos elementos. (Um cliente escorregou e caiu em uma loja – a loja tem responsabilidade por negligência?)",
     }
     technique5_example_bad_prompt = {
-        'en': 'The customer slipped on a wet floor in the store and was injured. Is the store liable for negligence?',
-        'pt': 'O cliente escorregou em um piso molhado na loja e se machucou. A loja é responsável por negligência?',
+        "en": "The customer slipped on a wet floor in the store and was injured. Is the store liable for negligence?",
+        "pt": "O cliente escorregou em um piso molhado na loja e se machucou. A loja é responsável por negligência?",
     }
     technique5_example_good_prompt = {
-        'en': 'You are a legal analyst. Analyze the following scenario step by step to determine if the store could be held liable for negligence: A customer in a grocery store slipped on a spilled liquid and broke their arm. First, identify the elements required to prove negligence in U.S. law (duty, breach, causation, damages). Then, discuss each element one by one with respect to the facts (e.g., did the store owe a duty, did it breach that duty by not cleaning the spill, etc.). Conclude whether the elements are satisfied and thus if the store is likely liable.',
-        'pt': 'Você é um analista jurídico. Analise o seguinte cenário passo a passo para determinar se a loja pode ser responsabilizada por negligência: Um cliente em um supermercado escorregou em um líquido derramado e quebrou o braço. Primeiro, identifique os elementos necessários para provar negligência na lei brasileira (conduta culposa, dano, nexo causal). Em seguida, discuta cada elemento um por um com relação aos fatos (por exemplo, a loja tinha um dever de cuidado, violou esse dever ao não limpar o derramamento, etc.). Conclua se os elementos estão satisfeitos e, portanto, se a loja é provavelmente responsável.',
+        "en": "You are a legal analyst. Analyze the following scenario step by step to determine if the store could be held liable for negligence: A customer in a grocery store slipped on a spilled liquid and broke their arm. First, identify the elements required to prove negligence in U.S. law (duty, breach, causation, damages). Then, discuss each element one by one with respect to the facts (e.g., did the store owe a duty, did it breach that duty by not cleaning the spill, etc.). Conclude whether the elements are satisfied and thus if the store is likely liable.",
+        "pt": "Você é um analista jurídico. Analise o seguinte cenário passo a passo para determinar se a loja pode ser responsabilizada por negligência: Um cliente em um supermercado escorregou em um líquido derramado e quebrou o braço. Primeiro, identifique os elementos necessários para provar negligência na lei brasileira (conduta culposa, dano, nexo causal). Em seguida, discuta cada elemento um por um com relação aos fatos (por exemplo, a loja tinha um dever de cuidado, violou esse dever ao não limpar o derramamento, etc.). Conclua se os elementos estão satisfeitos e, portanto, se a loja é provavelmente responsável.",
     }
     technique5_example_explanation = {
-        'en': "This prompt explicitly asks for a step-by-step IRAC-style analysis. It not only tells the AI to consider each negligence element in order but also reminds it of what those elements are. The instruction ensures the answer will be organized (perhaps with headings or paragraphs for Duty, Breach, Causation, Damages, Conclusion). The model is less likely to omit a part of the analysis, and the user will get a structured explanation rather than a one-liner. By guiding the reasoning process, the prompt helps the AI reach a well-founded conclusion (or identify if information is missing) just as a human lawyer would.\\n\\nExample output: \\\"*Duty: The store, as a business open to the public, owes its customers a legal duty of care to maintain the premises in a reasonably safe condition. Here, that duty means regularly inspecting for hazards like spills and either cleaning them promptly or warning customers (e.g., with a 'Wet Floor' sign).\\n\\nBreach: We examine if the store breached its duty by failing to address the spilled liquid. If the spill was present long enough that employees should have noticed it (say, it had been on the floor for 30 minutes without cleanup), not cleaning it would likely be a breach of duty. If the spill happened moments before the fall, the store might argue it had no reasonable opportunity to discover and fix it, which could negate breach.\\n\\nCausation: The customer's injury must be caused by the store's breach. Here, the causal link is direct: the unsafe condition (wet floor) led to the slip-and-fall accident. We'd also consider proximate cause – it's foreseeable that an unaddressed spill leads to this kind of injury, so causation is established.\\n\\nDamages: The customer suffered actual harm (a broken arm, medical bills, etc.), satisfying the damages element required for negligence.\\n\\nConclusion: If evidence shows the spill was on the floor long enough that the store should have known and cleaned it, the store likely breached its duty. In that case, all four elements of negligence are met, and the store would likely be held liable for the customer's injury. If the spill was truly sudden and unforeseeable, the store might avoid liability, but absent such proof, this scenario points toward negligence on the store's part.*\\\"",
-        'pt': 'Este prompt solicita explicitamente uma análise passo a passo no estilo IRAC. Ele não apenas diz à IA para considerar cada elemento de negligência em ordem, mas também a lembra quais são esses elementos. A instrução garante que a resposta será organizada (talvez com títulos ou parágrafos para Dever, Violação, Causalidade, Danos, Conclusão). O modelo tem menos probabilidade de omitir uma parte da análise, e o usuário obterá uma explicação estruturada em vez de uma resposta de uma linha. Ao guiar o processo de raciocínio, o prompt ajuda a IA a chegar a uma conclusão bem fundamentada (ou identificar se falta informação) assim como um advogado humano faria.\\\\n\\\\nExemplo de saída: \\"*Dever: A loja, como um negócio aberto ao público, deve aos seus clientes um dever legal de cuidado para manter as instalações em condições razoavelmente seguras. Aqui, esse dever significa inspecionar regularmente por perigos como derramamentos e limpá-los prontamente ou avisar os clientes (por exemplo, com uma placa de \\\\\\\'Piso Molhado\\\\\\\').\\\\n\\\\nViolação: Examinamos se a loja violou seu dever ao não lidar com o líquido derramado. Se o derramamento esteve presente por tempo suficiente para que os funcionários devessem tê-lo notado (digamos, estava no chão por 30 minutos sem limpeza), não limpá-lo provavelmente seria uma violação do dever. Se o derramamento aconteceu momentos antes da queda, a loja poderia argumentar que não teve oportunidade razoável de descobri-lo e corrigi-lo, o que poderia negar a violação.\\\\n\\\\nCausalidade: A lesão do cliente deve ser causada pela violação da loja. Aqui, o nexo causal é direto: a condição insegura (piso molhado) levou ao acidente de escorregão e queda. Também consideraríamos a causa próxima – é previsível que um derramamento não tratado leve a esse tipo de lesão, então a causalidade está estabelecida.\\\\n\\\\nDanos: O cliente sofreu dano real (um braço quebrado, contas médicas, etc.), satisfazendo o elemento de danos necessário para negligência.\\\\n\\\\nConclusão: Se as evidências mostrarem que o derramamento estava no chão por tempo suficiente para que a loja devesse saber e limpá-lo, a loja provavelmente violou seu dever. Nesse caso, todos os quatro elementos de negligência são atendidos, e a loja provavelmente seria responsabilizada pela lesão do cliente. Se o derramamento foi verdadeiramente súbito e imprevisível, a loja poderia evitar a responsabilidade, mas na ausência de tal prova, este cenário aponta para negligência por parte da loja.*\\"',
+        "en": "This prompt explicitly asks for a step-by-step IRAC-style analysis. It not only tells the AI to consider each negligence element in order but also reminds it of what those elements are. The instruction ensures the answer will be organized (perhaps with headings or paragraphs for Duty, Breach, Causation, Damages, Conclusion). The model is less likely to omit a part of the analysis, and the user will get a structured explanation rather than a one-liner. By guiding the reasoning process, the prompt helps the AI reach a well-founded conclusion (or identify if information is missing) just as a human lawyer would.\\n\\nExample output: \\\"*Duty: The store, as a business open to the public, owes its customers a legal duty of care to maintain the premises in a reasonably safe condition. Here, that duty means regularly inspecting for hazards like spills and either cleaning them promptly or warning customers (e.g., with a 'Wet Floor' sign).\\n\\nBreach: We examine if the store breached its duty by failing to address the spilled liquid. If the spill was present long enough that employees should have noticed it (say, it had been on the floor for 30 minutes without cleanup), not cleaning it would likely be a breach of duty. If the spill happened moments before the fall, the store might argue it had no reasonable opportunity to discover and fix it, which could negate breach.\\n\\nCausation: The customer's injury must be caused by the store's breach. Here, the causal link is direct: the unsafe condition (wet floor) led to the slip-and-fall accident. We'd also consider proximate cause – it's foreseeable that an unaddressed spill leads to this kind of injury, so causation is established.\\n\\nDamages: The customer suffered actual harm (a broken arm, medical bills, etc.), satisfying the damages element required for negligence.\\n\\nConclusion: If evidence shows the spill was on the floor long enough that the store should have known and cleaned it, the store likely breached its duty. In that case, all four elements of negligence are met, and the store would likely be held liable for the customer's injury. If the spill was truly sudden and unforeseeable, the store might avoid liability, but absent such proof, this scenario points toward negligence on the store's part.*\\\"",
+        "pt": "Este prompt solicita explicitamente uma análise passo a passo no estilo IRAC. Ele não apenas diz à IA para considerar cada elemento de negligência em ordem, mas também a lembra quais são esses elementos. A instrução garante que a resposta será organizada (talvez com títulos ou parágrafos para Dever, Violação, Causalidade, Danos, Conclusão). O modelo tem menos probabilidade de omitir uma parte da análise, e o usuário obterá uma explicação estruturada em vez de uma resposta de uma linha. Ao guiar o processo de raciocínio, o prompt ajuda a IA a chegar a uma conclusão bem fundamentada (ou identificar se falta informação) assim como um advogado humano faria.\\\\n\\\\nExemplo de saída: \\\"*Dever: A loja, como um negócio aberto ao público, deve aos seus clientes um dever legal de cuidado para manter as instalações em condições razoavelmente seguras. Aqui, esse dever significa inspecionar regularmente por perigos como derramamentos e limpá-los prontamente ou avisar os clientes (por exemplo, com uma placa de \\\\\\'Piso Molhado\\\\\\').\\\\n\\\\nViolação: Examinamos se a loja violou seu dever ao não lidar com o líquido derramado. Se o derramamento esteve presente por tempo suficiente para que os funcionários devessem tê-lo notado (digamos, estava no chão por 30 minutos sem limpeza), não limpá-lo provavelmente seria uma violação do dever. Se o derramamento aconteceu momentos antes da queda, a loja poderia argumentar que não teve oportunidade razoável de descobri-lo e corrigi-lo, o que poderia negar a violação.\\\\n\\\\nCausalidade: A lesão do cliente deve ser causada pela violação da loja. Aqui, o nexo causal é direto: a condição insegura (piso molhado) levou ao acidente de escorregão e queda. Também consideraríamos a causa próxima – é previsível que um derramamento não tratado leve a esse tipo de lesão, então a causalidade está estabelecida.\\\\n\\\\nDanos: O cliente sofreu dano real (um braço quebrado, contas médicas, etc.), satisfazendo o elemento de danos necessário para negligência.\\\\n\\\\nConclusão: Se as evidências mostrarem que o derramamento estava no chão por tempo suficiente para que a loja devesse saber e limpá-lo, a loja provavelmente violou seu dever. Nesse caso, todos os quatro elementos de negligência são atendidos, e a loja provavelmente seria responsabilizada pela lesão do cliente. Se o derramamento foi verdadeiramente súbito e imprevisível, a loja poderia evitar a responsabilidade, mas na ausência de tal prova, este cenário aponta para negligência por parte da loja.*\\\"",
     }
     technique5_resource_title = {
-        'en': "Deloitte's Guide to Legal Prompting",
-        'pt': 'Guia da Deloitte para Prompting Jurídico',
+        "en": "Deloitte's Guide to Legal Prompting",
+        "pt": "Guia da Deloitte para Prompting Jurídico",
     }
     technique5_resource_url = (
         'https://www2.deloitte.com/dl/en/pages/legal/articles/grundkurs-legal-prompting.html'
     )
     technique5_resource_description = {
-        'en': 'Comprehensive guide on effective legal prompting techniques including step-by-step reasoning',
-        'pt': 'Guia abrangente sobre técnicas eficazes de prompting jurídico, incluindo raciocínio passo a passo',
+        "en": "Comprehensive guide on effective legal prompting techniques including step-by-step reasoning",
+        "pt": "Guia abrangente sobre técnicas eficazes de prompting jurídico, incluindo raciocínio passo a passo",
     }
+    return
 
 
 @app.cell
 def _():
     technique6_slug = 'contract-extraction'
     technique6_name = {
-        'en': 'Extracting Key Provisions and Data from Contracts',
-        'pt': 'Extraindo Disposições e Dados Chave de Contratos',
+        "en": "Extracting Key Provisions and Data from Contracts",
+        "pt": "Extraindo Disposições e Dados Chave de Contratos",
     }
     technique6_description = {
-        'en': 'This technique involves directing an LLM to locate and extract specific information from legal documents like contracts, rather than summarizing the entire document. By focusing the model on particular provisions, clauses, or data points, attorneys can quickly find relevant information such as dates, obligations, defined terms, or conditions. The approach is similar to using targeted questions with a colleague who has read a document - except the LLM does the quick read-through and extraction for you.',
-        'pt': 'Esta técnica envolve direcionar um LLM para localizar e extrair informações específicas de documentos legais como contratos, em vez de resumir o documento inteiro. Ao focar o modelo em disposições, cláusulas ou pontos de dados específicos, os advogados podem encontrar rapidamente informações relevantes como datas, obrigações, termos definidos ou condições. A abordagem é semelhante a usar perguntas direcionadas com um colega que leu um documento - exceto que o LLM faz a leitura rápida e a extração para você.',
+        "en": "This technique involves directing an LLM to locate and extract specific information from legal documents like contracts, rather than summarizing the entire document. By focusing the model on particular provisions, clauses, or data points, attorneys can quickly find relevant information such as dates, obligations, defined terms, or conditions. The approach is similar to using targeted questions with a colleague who has read a document - except the LLM does the quick read-through and extraction for you.",
+        "pt": "Esta técnica envolve direcionar um LLM para localizar e extrair informações específicas de documentos legais como contratos, em vez de resumir o documento inteiro. Ao focar o modelo em disposições, cláusulas ou pontos de dados específicos, os advogados podem encontrar rapidamente informações relevantes como datas, obrigações, termos definidos ou condições. A abordagem é semelhante a usar perguntas direcionadas com um colega que leu um documento - exceto que o LLM faz a leitura rápida e a extração para você.",
     }
     technique6_why_it_works = {
-        'en': "Legal documents are often lengthy and complex, with critical details buried within dense paragraphs. By prompting the LLM to focus on specific provisions or information types, you eliminate the noise and zero in on what matters. This technique works because LLMs have strong pattern recognition abilities that can identify the relevant clauses or data points when properly directed. Rather than processing the entire document (which might exceed the model's context window anyway), a targeted extraction prompt creates efficiency by pulling only the needed information. This is particularly valuable when reviewing multiple agreements or when specific contractual elements (like termination rights, payment terms, or warranty provisions) need quick assessment across documents.",
-        'pt': 'Documentos legais são frequentemente longos e complexos, com detalhes críticos enterrados em parágrafos densos. Ao solicitar ao LLM que se concentre em disposições ou tipos de informação específicos, você elimina o ruído e foca no que importa. Esta técnica funciona porque os LLMs têm fortes habilidades de reconhecimento de padrões que podem identificar as cláusulas ou pontos de dados relevantes quando devidamente direcionados. Em vez de processar o documento inteiro (o que pode exceder a janela de contexto do modelo de qualquer maneira), um prompt de extração direcionado cria eficiência ao puxar apenas as informações necessárias. Isso é particularmente valioso ao revisar múltiplos acordos ou quando elementos contratuais específicos (como direitos de rescisão, termos de pagamento ou disposições de garantia) precisam de avaliação rápida entre documentos.',
+        "en": "Legal documents are often lengthy and complex, with critical details buried within dense paragraphs. By prompting the LLM to focus on specific provisions or information types, you eliminate the noise and zero in on what matters. This technique works because LLMs have strong pattern recognition abilities that can identify the relevant clauses or data points when properly directed. Rather than processing the entire document (which might exceed the model's context window anyway), a targeted extraction prompt creates efficiency by pulling only the needed information. This is particularly valuable when reviewing multiple agreements or when specific contractual elements (like termination rights, payment terms, or warranty provisions) need quick assessment across documents.",
+        "pt": "Documentos legais são frequentemente longos e complexos, com detalhes críticos enterrados em parágrafos densos. Ao solicitar ao LLM que se concentre em disposições ou tipos de informação específicos, você elimina o ruído e foca no que importa. Esta técnica funciona porque os LLMs têm fortes habilidades de reconhecimento de padrões que podem identificar as cláusulas ou pontos de dados relevantes quando devidamente direcionados. Em vez de processar o documento inteiro (o que pode exceder a janela de contexto do modelo de qualquer maneira), um prompt de extração direcionado cria eficiência ao puxar apenas as informações necessárias. Isso é particularmente valioso ao revisar múltiplos acordos ou quando elementos contratuais específicos (como direitos de rescisão, termos de pagamento ou disposições de garantia) precisam de avaliação rápida entre documentos.",
     }
     technique6_example_question = {
-        'en': "Understanding a contract's liquidated damages provision. (You need to know how damages for breach are handled in a long agreement.)",
-        'pt': 'Entendendo a cláusula de liquidação de danos de um contrato. (Você precisa saber como os danos por violação são tratados em um longo acordo.)',
+        "en": "Understanding a contract's liquidated damages provision. (You need to know how damages for breach are handled in a long agreement.)",
+        "pt": "Entendendo a cláusula de liquidação de danos de um contrato. (Você precisa saber como os danos por violação são tratados em um longo acordo.)",
     }
     technique6_example_bad_prompt = {
-        'en': 'Tell me about this contract. [entire 50-page contract pasted]',
-        'pt': 'Fale-me sobre este contrato. [contrato inteiro de 50 páginas colado]',
+        "en": "Tell me about this contract. [entire 50-page contract pasted]",
+        "pt": "Fale-me sobre este contrato. [contrato inteiro de 50 páginas colado]",
     }
     technique6_example_good_prompt = {
-        'en': "In the clause below, what do the parties agree regarding damages for breach?\\n\\n12.2 Liquidated Damages Not Penalty. Because of the unique nature of the economic damages that may be sustained by the Company in the event of a breach of certain provisions of this Agreement by Executive, it is acknowledged and agreed by the Parties that it would be impracticable and extremely difficult to ascertain with any degree of certainty the amount of damages which the Company would sustain as a result of such breach. Accordingly, if Executive breaches certain provisions of this Agreement, the Parties agree that any sums payable under this Agreement in such circumstances are in the nature of liquidated damages and not a penalty, and represent a reasonable estimate of the damages that the Company will suffer in the event of Executive's breach.\\n\\nSummarize the effect of this clause in bullet points, explaining what this means for both parties if there's a breach.",
-        'pt': 'Na cláusula abaixo, o que as partes concordam sobre danos por violação?\\\\n\\\\n12.2 Danos Liquidados Não Penalidade. Devido à natureza única dos danos econômicos que podem ser sofridos pela Empresa no caso de violação de certas disposições deste Contrato pelo Executivo, é reconhecido e acordado pelas Partes que seria impraticável e extremamente difícil determinar com qualquer grau de certeza o montante dos danos que a Empresa sofreria como resultado de tal violação. Assim, se o Executivo violar certas disposições deste Contrato, as Partes concordam que quaisquer somas pagáveis sob este Contrato em tais circunstâncias são de natureza de danos liquidados e não uma penalidade, e representam uma estimativa razoável dos danos que a Empresa sofrerá no caso de violação do Executivo.\\\\n\\\\nResuma o efeito desta cláusula em pontos, explicando o que isso significa para ambas as partes se houver uma violação.',
+        "en": "In the clause below, what do the parties agree regarding damages for breach?\\n\\n12.2 Liquidated Damages Not Penalty. Because of the unique nature of the economic damages that may be sustained by the Company in the event of a breach of certain provisions of this Agreement by Executive, it is acknowledged and agreed by the Parties that it would be impracticable and extremely difficult to ascertain with any degree of certainty the amount of damages which the Company would sustain as a result of such breach. Accordingly, if Executive breaches certain provisions of this Agreement, the Parties agree that any sums payable under this Agreement in such circumstances are in the nature of liquidated damages and not a penalty, and represent a reasonable estimate of the damages that the Company will suffer in the event of Executive's breach.\\n\\nSummarize the effect of this clause in bullet points, explaining what this means for both parties if there's a breach.",
+        "pt": "Na cláusula abaixo, o que as partes concordam sobre danos por violação?\\\\n\\\\n12.2 Danos Liquidados Não Penalidade. Devido à natureza única dos danos econômicos que podem ser sofridos pela Empresa no caso de violação de certas disposições deste Contrato pelo Executivo, é reconhecido e acordado pelas Partes que seria impraticável e extremamente difícil determinar com qualquer grau de certeza o montante dos danos que a Empresa sofreria como resultado de tal violação. Assim, se o Executivo violar certas disposições deste Contrato, as Partes concordam que quaisquer somas pagáveis sob este Contrato em tais circunstâncias são de natureza de danos liquidados e não uma penalidade, e representam uma estimativa razoável dos danos que a Empresa sofrerá no caso de violação do Executivo.\\\\n\\\\nResuma o efeito desta cláusula em pontos, explicando o que isso significa para ambas as partes se houver uma violação.",
     }
     technique6_example_explanation = {
-        'en': 'The good prompt does several things right: it isolates just the relevant clause (12.2) rather than sending the entire contract, asks a specific question about breach damages, and requests a structured response format (bullet points). This leads the LLM to focus solely on interpreting the liquidated damages provision, which establishes that certain payments for breach: 1) are considered liquidated damages not penalties, 2) are justified because actual damages would be difficult to measure, and 3) represent what the parties agree is a reasonable estimate of potential harm. The model doesn\'t waste time analyzing unrelated sections of the agreement, and the attorney gets precisely the information needed: the nature and justification of the damages provision. This extraction approach is significantly more efficient than asking for a general contract summary and then hunting through it for damage provisions.\\n\\nExample output: \\"• Effect of Clause 12.2 - Liquidated Damages:\\n• The clause establishes that certain breach payments are classified as liquidated damages, not penalties\\n• Both parties acknowledge that actual economic damages from specific breaches would be difficult to calculate with certainty\\n• The payments represent a reasonable pre-estimate of potential damages, not punishment\\n• This classification matters legally because courts generally enforce liquidated damages provisions but may invalidate penalty clauses\\n• For the executive: limits potential argument that the damages are excessive or punitive\\n• For the company: provides more certainty that the damage amounts will be enforceable if challenged in court\\"',
-        'pt': 'O bom prompt faz várias coisas certas: isola apenas a cláusula relevante (12.2) em vez de enviar o contrato inteiro, faz uma pergunta específica sobre danos por violação e solicita um formato de resposta estruturado (pontos). Isso leva o LLM a focar exclusivamente na interpretação da disposição de danos liquidados, que estabelece que certos pagamentos por violação: 1) são considerados danos liquidados, não penalidades, 2) são justificados porque os danos reais seriam difíceis de medir, e 3) representam o que as partes concordam ser uma estimativa razoável do dano potencial. O modelo não perde tempo analisando seções não relacionadas do acordo, e o advogado obtém precisamente a informação necessária: a natureza e a justificação da disposição sobre danos. Esta abordagem de extração é significativamente mais eficiente do que pedir um resumo geral do contrato e depois procurar nele por disposições sobre danos.\\\\n\\\\nExemplo de saída: \\"• Efeito da Cláusula 12.2 - Danos Liquidados:\\\\n• A cláusula estabelece que certos pagamentos por violação são classificados como danos liquidados, não penalidades\\\\n• Ambas as partes reconhecem que os danos econômicos reais de violações específicas seriam difíceis de calcular com certeza\\\\n• Os pagamentos representam uma estimativa prévia razoável de danos potenciais, não punição\\\\n• Esta classificação importa legalmente porque os tribunais geralmente aplicam disposições de danos liquidados, mas podem invalidar cláusulas penais\\\\n• Para o executivo: limita o argumento potencial de que os danos são excessivos ou punitivos\\\\n• Para a empresa: fornece mais certeza de que os montantes dos danos serão aplicáveis se contestados em tribunal\\"',
+        "en": "The good prompt does several things right: it isolates just the relevant clause (12.2) rather than sending the entire contract, asks a specific question about breach damages, and requests a structured response format (bullet points). This leads the LLM to focus solely on interpreting the liquidated damages provision, which establishes that certain payments for breach: 1) are considered liquidated damages not penalties, 2) are justified because actual damages would be difficult to measure, and 3) represent what the parties agree is a reasonable estimate of potential harm. The model doesn't waste time analyzing unrelated sections of the agreement, and the attorney gets precisely the information needed: the nature and justification of the damages provision. This extraction approach is significantly more efficient than asking for a general contract summary and then hunting through it for damage provisions.\\n\\nExample output: \\\"• Effect of Clause 12.2 - Liquidated Damages:\\n• The clause establishes that certain breach payments are classified as liquidated damages, not penalties\\n• Both parties acknowledge that actual economic damages from specific breaches would be difficult to calculate with certainty\\n• The payments represent a reasonable pre-estimate of potential damages, not punishment\\n• This classification matters legally because courts generally enforce liquidated damages provisions but may invalidate penalty clauses\\n• For the executive: limits potential argument that the damages are excessive or punitive\\n• For the company: provides more certainty that the damage amounts will be enforceable if challenged in court\\\"",
+        "pt": "O bom prompt faz várias coisas certas: isola apenas a cláusula relevante (12.2) em vez de enviar o contrato inteiro, faz uma pergunta específica sobre danos por violação e solicita um formato de resposta estruturado (pontos). Isso leva o LLM a focar exclusivamente na interpretação da disposição de danos liquidados, que estabelece que certos pagamentos por violação: 1) são considerados danos liquidados, não penalidades, 2) são justificados porque os danos reais seriam difíceis de medir, e 3) representam o que as partes concordam ser uma estimativa razoável do dano potencial. O modelo não perde tempo analisando seções não relacionadas do acordo, e o advogado obtém precisamente a informação necessária: a natureza e a justificação da disposição sobre danos. Esta abordagem de extração é significativamente mais eficiente do que pedir um resumo geral do contrato e depois procurar nele por disposições sobre danos.\\\\n\\\\nExemplo de saída: \\\"• Efeito da Cláusula 12.2 - Danos Liquidados:\\\\n• A cláusula estabelece que certos pagamentos por violação são classificados como danos liquidados, não penalidades\\\\n• Ambas as partes reconhecem que os danos econômicos reais de violações específicas seriam difíceis de calcular com certeza\\\\n• Os pagamentos representam uma estimativa prévia razoável de danos potenciais, não punição\\\\n• Esta classificação importa legalmente porque os tribunais geralmente aplicam disposições de danos liquidados, mas podem invalidar cláusulas penais\\\\n• Para o executivo: limita o argumento potencial de que os danos são excessivos ou punitivos\\\\n• Para a empresa: fornece mais certeza de que os montantes dos danos serão aplicáveis se contestados em tribunal\\\"",
     }
     technique6_resource_title = {
-        'en': 'Ethylene Sales Agreement',
-        'pt': 'Contrato de Venda de Etileno',
+        "en": "Ethylene Sales Agreement",
+        "pt": "Contrato de Venda de Etileno",
     }
     technique6_resource_url = (
         'https://www.sec.gov/Archives/edgar/data/1604665/000119312514263367/d715499dex104.htm'
@@ -634,6 +640,7 @@ def _():
         'en': 'A complex and long agreement, perfect for this example.',
         'pt': 'Um acordo complexo e longo, perfeito para este exemplo.',
     }
+    return
 
 
 @app.cell
@@ -678,6 +685,7 @@ def _():
         'en': 'A complex and long agreement, perfect for this example, but now techy.',
         'pt': 'Um acordo complexo e longo, perfeito para este exemplo, mas agora tecnológico.',
     }
+    return
 
 
 @app.cell
@@ -729,7 +737,6 @@ def _(DirectLLMClient, mo):
             ]
         )
         return final_response
-
     return (display_response,)
 
 
@@ -774,6 +781,7 @@ def _():
         'en': "Insights on cross-language contract interpretation challenges. Adam is just really good. If you ever read this, Adam, I'm your fan since 2011! (Update: Adam ignored my LinkedIn request...)",
         'pt': 'Insights sobre desafios de interpretação de contratos em diferentes idiomas. Adam é simplesmente ótimo. Se você algum dia ler isto, Adam, sou seu fã desde 2011! (Fui ignorado pelo Prof. Adam...)',
     }
+    return
 
 
 @app.cell
@@ -817,6 +825,7 @@ def _():
         'en': "Reference document showing Brazil's civil law approach to contract provisions",
         'pt': 'Documento de referência mostrando a abordagem do direito civil brasileiro para provisões contratuais',
     }
+    return
 
 
 @app.cell
@@ -834,7 +843,6 @@ def _(get_current_language, mo, translations):
             value='Your prompt',
             label=translations['examples'][get_current_language()],
         )
-
     return (generate_examples,)
 
 
@@ -861,7 +869,6 @@ def _(get_current_language, mo, translations):
             'good_prompt': good_prompt,
             'header': playground_header,
         }
-
     return (create_enhanced_interactive_playground,)
 
 
@@ -897,7 +904,6 @@ def _(mo):
                 )
             ]
         )
-
     return (generate_output,)
 
 
@@ -925,7 +931,6 @@ def _(get_current_language, mo, translations):
             clear_on_submit=False,  # Keep text after submit for display_response
             show_clear_button=True,
         )
-
     return (generate_form,)
 
 
@@ -974,10 +979,15 @@ def _():
         'en': 'This paper from UC Berkeley researchers explores how information positioning within prompts affects language model responses, particularly highlighting the recency effect.',
         'pt': 'Este artigo acadêmico de pesquisadores da UC Berkeley examina como a posição das informações dentro de um prompt afeta significativamente a resposta de um modelo de linguagem, com atenção especial ao fenômeno do efeito de recência.',
     }
+    return
 
 
 @app.cell
-def _(create_enhanced_interactive_playground, generate_examples, get_current_language):
+def _(
+    create_enhanced_interactive_playground,
+    generate_examples,
+    get_current_language,
+):
     def create_interactive_playground_number(param):
         """
         Create playground components for a specific technique number
@@ -997,7 +1007,6 @@ def _(create_enhanced_interactive_playground, generate_examples, get_current_lan
 
         # Return data needed for the next cell
         return playground_data['header'], examples
-
     return (create_interactive_playground_number,)
 
 
@@ -1087,7 +1096,6 @@ def _(get_current_language, mo, translations):
         ]
 
         return mo.vstack(components)
-
     return (display_technique_,)
 
 
@@ -1105,19 +1113,18 @@ def display_technique_number(display_technique_):
             A marimo component displaying the technique section
         """
         return display_technique_(
-            globals()[f'technique{param}_slug'],
-            globals()[f'technique{param}_name'],
-            globals()[f'technique{param}_description'],
-            globals()[f'technique{param}_why_it_works'],
-            globals()[f'technique{param}_example_question'],
-            globals()[f'technique{param}_example_bad_prompt'],
-            globals()[f'technique{param}_example_good_prompt'],
-            globals()[f'technique{param}_example_explanation'],
-            globals()[f'technique{param}_resource_title'],
-            globals()[f'technique{param}_resource_url'],
-            globals()[f'technique{param}_resource_description'],
-        )
-
+                globals()[f'technique{param}_slug'],
+                globals()[f'technique{param}_name'],
+                globals()[f'technique{param}_description'],
+                globals()[f'technique{param}_why_it_works'],
+                globals()[f'technique{param}_example_question'],
+                globals()[f'technique{param}_example_bad_prompt'],
+                globals()[f'technique{param}_example_good_prompt'],
+                globals()[f'technique{param}_example_explanation'],
+                globals()[f'technique{param}_resource_title'],
+                globals()[f'technique{param}_resource_url'],
+                globals()[f'technique{param}_resource_description'],
+            )
     return (display_technique_number,)
 
 
@@ -1125,6 +1132,7 @@ def display_technique_number(display_technique_):
 def _(display_technique_number):
     # Display technique #1
     display_technique_number(1)
+    return
 
 
 @app.cell
@@ -1152,18 +1160,21 @@ def _(examples1, form1, generate_output):
 def _(examples1, form1, header1, mo, output1):
     # Assemble final UI for technique #1
     mo.vstack([header1, examples1, form1, output1], justify='space-between', heights=[1, 2, 1, 1])
+    return
 
 
 @app.cell
 def _(display_response, form1):
     # Display response for technique #1
     display_response(form1)
+    return
 
 
 @app.cell
 def _(display_technique_number):
     # Display technique #2
     display_technique_number(2)
+    return
 
 
 @app.cell
@@ -1191,17 +1202,20 @@ def _(examples2, form2, generate_output):
 def _(examples2, form2, header2, mo, output2):
     # Assemble final UI for technique #2
     mo.vstack([header2, examples2, form2, output2], justify='space-between', heights=[1, 2, 1, 1])
+    return
 
 
 @app.cell
 def _(display_response, form2):
     # Display response for technique #2
     display_response(form2)
+    return
 
 
 @app.cell
 def _(display_technique_number):
     display_technique_number(3)
+    return
 
 
 @app.cell
@@ -1229,17 +1243,20 @@ def _(examples3, form3, generate_output):
 def _(examples3, form3, header3, mo, output3):
     # Assemble final UI for technique #3
     mo.vstack([header3, examples3, form3, output3], justify='space-between', heights=[1, 2, 1, 1])
+    return
 
 
 @app.cell
 def _(display_response, form3):
     # Display response for technique #3
     display_response(form3)
+    return
 
 
 @app.cell
 def _(display_technique_number):
     display_technique_number(4)
+    return
 
 
 @app.cell
@@ -1267,17 +1284,20 @@ def _(examples4, form4, generate_output):
 def _(examples4, form4, header4, mo, output4):
     # Assemble final UI for technique #4
     mo.vstack([header4, examples4, form4, output4], justify='space-between', heights=[1, 2, 1, 1])
+    return
 
 
 @app.cell
 def _(display_response, form4):
     # Display response for technique #4
     display_response(form4)
+    return
 
 
 @app.cell
 def _(display_technique_number):
     display_technique_number(5)
+    return
 
 
 @app.cell
@@ -1305,18 +1325,21 @@ def _(examples5, form5, generate_output):
 def _(examples5, form5, header5, mo, output5):
     # Assemble final UI for technique #5
     mo.vstack([header5, examples5, form5, output5], justify='space-between', heights=[1, 2, 1, 1])
+    return
 
 
 @app.cell
 def _(display_response, form5):
     # Display response for technique #5
     display_response(form5)
+    return
 
 
 @app.cell
 def _(display_technique_number):
     # Display technique #6
     display_technique_number(6)
+    return
 
 
 @app.cell
@@ -1344,17 +1367,20 @@ def _(examples6, form6, generate_output):
 def _(examples6, form6, header6, mo, output6):
     # Assemble final UI for technique #6
     mo.vstack([header6, examples6, form6, output6], justify='space-between', heights=[1, 2, 1, 1])
+    return
 
 
 @app.cell
 def _(display_response, form6):
     # Display response for technique #6
     display_response(form6)
+    return
 
 
 @app.cell
 def _(display_technique_number):
     display_technique_number(7)
+    return
 
 
 @app.cell
@@ -1382,17 +1408,20 @@ def _(examples7, form7, generate_output):
 def _(examples7, form7, header7, mo, output7):
     # Assemble final UI for technique #7
     mo.vstack([header7, examples7, form7, output7], justify='space-between', heights=[1, 2, 1, 1])
+    return
 
 
 @app.cell
 def _(display_response, form7):
     # Display response for technique #7
     display_response(form7)
+    return
 
 
 @app.cell
 def _(display_technique_number):
     display_technique_number(8)
+    return
 
 
 @app.cell
@@ -1420,17 +1449,20 @@ def _(examples8, form8, generate_output):
 def _(examples8, form8, header8, mo, output8):
     # Assemble final UI for technique #8
     mo.vstack([header8, examples8, form8, output8], justify='space-between', heights=[1, 2, 1, 1])
+    return
 
 
 @app.cell
 def _(display_response, form8):
     # Display response for technique #8
     display_response(form8)
+    return
 
 
 @app.cell
 def _(display_technique_number):
     display_technique_number(9)
+    return
 
 
 @app.cell
@@ -1458,17 +1490,20 @@ def _(examples9, form9, generate_output):
 def _(examples9, form9, header9, mo, output9):
     # Assemble final UI for technique #9
     mo.vstack([header9, examples9, form9, output9], justify='space-between', heights=[1, 2, 1, 1])
+    return
 
 
 @app.cell
 def _(display_response, form9):
     # Display response for technique #9
     display_response(form9)
+    return
 
 
 @app.cell
 def _(display_technique_number):
     display_technique_number(10)
+    return
 
 
 @app.cell
@@ -1498,12 +1533,14 @@ def _(examples10, form10, header10, mo, output10):
     mo.vstack(
         [header10, examples10, form10, output10], justify='space-between', heights=[1, 2, 1, 1]
     )
+    return
 
 
 @app.cell
 def _(display_response, form10):
     # Display response for technique #10
     display_response(form10)
+    return
 
 
 @app.cell
@@ -1530,7 +1567,8 @@ def _(mo):
         </div>
         """
     )
+    return
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run()
