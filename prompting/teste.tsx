@@ -16,7 +16,7 @@ const FinalA1 = () => (
       position: "relative",
       borderBottom: "2px solid #9D0208",
       background: "#F9F7F4"
-    }}>      
+    }}>
       <div style={{
         position: "relative",
         width: "100%",
@@ -35,7 +35,7 @@ const FinalA1 = () => (
         }}>
           LEGAL AI ENGINEERING
         </div>
-        
+
         <h1 style={{
           fontSize: "64px",
           fontWeight: "bold",
@@ -50,7 +50,7 @@ const FinalA1 = () => (
         }}>
           PROMPTING<br/>TECHNIQUES
         </h1>
-        
+
         <div style={{
           fontSize: "20px",
           marginTop: "15px",
@@ -60,14 +60,14 @@ const FinalA1 = () => (
         }}>
           MASTER THE ART OF COMMANDING AI LANGUAGE MODELS
         </div>
-        
+
         <div style={{
           width: "50px",
           height: "5px",
           background: "#9D0208",
           margin: "20px 0"
         }}></div>
-        
+
         <div style={{
           display: "flex",
           alignItems: "center"
@@ -91,7 +91,7 @@ const FinalA1 = () => (
         </div>
       </div>
     </div>
-    
+
     {/* Welcome Section - REMOVED INTERNAL BORDERS */}
     <div style={{
       padding: "40px 30px",
@@ -115,7 +115,7 @@ const FinalA1 = () => (
             letterSpacing: "1px",
             color: "#000"
           }}>WELCOME TO<br/>THE REVOLUTION</h2>
-          
+
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "16px",
@@ -126,7 +126,7 @@ const FinalA1 = () => (
           }}>
             This interactive guide will transform how you interact with AI language models, specifically optimized for legal applications. Each technique is battle-tested in real-world legal scenarios.
           </p>
-          
+
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "16px",
@@ -138,7 +138,7 @@ const FinalA1 = () => (
             Through this course, you'll learn how to extract precise, actionable legal analysis instead of generic responses that waste your valuable time.
           </p>
         </div>
-        
+
         <div style={{
           flex: "1",
           borderRight: "3px solid #D00000",
@@ -156,7 +156,7 @@ const FinalA1 = () => (
               textTransform: "uppercase",
               letterSpacing: "1px"
             }}>COURSE MODULES</h3>
-            
+
             <ol style={{
               padding: "0 0 0 20px",
               margin: "0",
@@ -183,7 +183,7 @@ const FinalA1 = () => (
         </div>
       </div>
     </div>
-    
+
     {/* Interactive Element */}
     <div style={{
       padding: "40px 30px",
@@ -201,7 +201,7 @@ const FinalA1 = () => (
         borderBottom: "1px solid #9D0208",
         paddingBottom: "10px",
       }}>TECHNIQUE SELECTOR</h3>
-      
+
       <div style={{
         display: "grid",
         gridTemplateColumns: "repeat(3, 1fr)",
@@ -221,7 +221,7 @@ const FinalA1 = () => (
         }}>
           CONTRACTS
         </button>
-        
+
         <button style={{
           background: "#E5383B",
           color: "#FFFFFF",
@@ -235,7 +235,7 @@ const FinalA1 = () => (
         }}>
           LITIGATION
         </button>
-        
+
         <button style={{
           background: "#E5383B",
           color: "#FFFFFF",
@@ -250,7 +250,7 @@ const FinalA1 = () => (
           CORPORATE
         </button>
       </div>
-      
+
       <div style={{
         background: "#F5F5F5",
         padding: "25px",
@@ -265,7 +265,7 @@ const FinalA1 = () => (
           fontFamily: "'Inter', sans-serif",
           fontWeight: "bold"
         }}>SELECTED PROMPT:</div>
-        
+
         <div style={{
           fontFamily: "'Inter', sans-serif",
           padding: "15px",
@@ -279,7 +279,7 @@ const FinalA1 = () => (
           AS A CONTRACT LAW SPECIALIST, REVIEW THIS MASTER SERVICE AGREEMENT FOR {`{specific_issue}`} AND IDENTIFY POTENTIAL RISKS RELATED TO {`{risk_area}`}. FOCUS ON CLAUSES THAT MIGHT {`{specific_concern}`}.
         </div>
       </div>
-      
+
       <div style={{
         textAlign: "center"
       }}>
@@ -318,7 +318,7 @@ const FinalB2 = () => (
       position: "relative",
       borderBottom: "4px solid #9D0208",
       background: "#F9F7F4"
-    }}>      
+    }}>
       <div style={{
         position: "relative",
         width: "100%",
@@ -338,7 +338,7 @@ const FinalB2 = () => (
         }}>
           LEGAL AI ENGINEERING
         </div>
-        
+
         <h1 style={{
           fontSize: "64px",
           fontWeight: "bold",
@@ -353,7 +353,7 @@ const FinalB2 = () => (
         }}>
           PROMPTING<br/>TECHNIQUES
         </h1>
-        
+
         <div style={{
           fontSize: "20px",
           marginTop: "15px",
@@ -364,7 +364,7 @@ const FinalB2 = () => (
         }}>
           MASTER THE ART OF COMMANDING AI LANGUAGE MODELS
         </div>
-        
+
         <div style={{
           width: "50px",
           height: "5px",
@@ -372,7 +372,7 @@ const FinalB2 = () => (
           margin: "20px 0"
           // Removed border
         }}></div>
-        
+
         <div style={{
           display: "flex",
           alignItems: "center",
@@ -397,7 +397,7 @@ const FinalB2 = () => (
         </div>
       </div>
     </div>
-    
+
     {/* Welcome Section - REMOVED INTERNAL BORDERS */}
     <div style={{
       padding: "40px 30px",
@@ -427,7 +427,7 @@ const FinalB2 = () => (
             borderBottom: "2px solid #9D0208",
             paddingBottom: "10px",
           }}>WELCOME TO<br/>THE REVOLUTION</h2>
-          
+
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "16px",
@@ -439,7 +439,7 @@ const FinalB2 = () => (
           }}>
             This interactive guide will transform how you interact with AI language models, specifically optimized for legal applications. Each technique is battle-tested in real-world legal scenarios.
           </p>
-          
+
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "16px",
@@ -452,7 +452,7 @@ const FinalB2 = () => (
             Through this course, you'll learn how to extract precise, actionable legal analysis instead of generic responses that waste your valuable time.
           </p>
         </div>
-        
+
         <div style={{
           flex: "1",
           borderRight: "5px solid #9D0208",
@@ -473,7 +473,7 @@ const FinalB2 = () => (
               borderBottom: "2px solid #9D0208",
               paddingBottom: "5px",
             }}>COURSE MODULES</h3>
-            
+
             <ol style={{
               padding: "0 0 0 20px",
               margin: "0",
@@ -500,7 +500,7 @@ const FinalB2 = () => (
         </div>
       </div>
     </div>
-    
+
     {/* Interactive Element */}
     <div style={{
       padding: "40px 30px",
@@ -519,7 +519,7 @@ const FinalB2 = () => (
         borderBottom: "2px solid #9D0208",
         paddingBottom: "10px",
       }}>TECHNIQUE SELECTOR</h3>
-      
+
       <div style={{
         display: "grid",
         gridTemplateColumns: "repeat(3, 1fr)",
@@ -539,7 +539,7 @@ const FinalB2 = () => (
         }}>
           CONTRACTS
         </button>
-        
+
         <button style={{
           background: "#E5383B",
           color: "#FFFFFF",
@@ -553,7 +553,7 @@ const FinalB2 = () => (
         }}>
           LITIGATION
         </button>
-        
+
         <button style={{
           background: "#E5383B",
           color: "#FFFFFF",
@@ -568,7 +568,7 @@ const FinalB2 = () => (
           CORPORATE
         </button>
       </div>
-      
+
       <div style={{
         background: "#F5F5F5",
         padding: "25px",
@@ -585,7 +585,7 @@ const FinalB2 = () => (
           borderBottom: "1px solid #9D0208",
           paddingBottom: "5px",
         }}>SELECTED PROMPT:</div>
-        
+
         <div style={{
           fontFamily: "'Inter', sans-serif",
           padding: "15px",
@@ -599,7 +599,7 @@ const FinalB2 = () => (
           AS A CONTRACT LAW SPECIALIST, REVIEW THIS MASTER SERVICE AGREEMENT FOR {`{specific_issue}`} AND IDENTIFY POTENTIAL RISKS RELATED TO {`{risk_area}`}. FOCUS ON CLAUSES THAT MIGHT {`{specific_concern}`}.
         </div>
       </div>
-      
+
       <div style={{
         textAlign: "center"
       }}>
@@ -628,7 +628,7 @@ const App = () => {
     <div className="p-4">
       <div className="mb-8">
         <h2 className="text-xl font-semibold mb-2">Final Designs</h2>
-        
+
         <div className="mb-6">
           <p className="text-sm text-gray-600 mb-2">
             <strong>Final improvements:</strong>
@@ -640,13 +640,13 @@ const App = () => {
             <li>Maintained standardized button styles throughout</li>
           </ul>
         </div>
-        
+
         <div className="flex flex-wrap gap-2 mb-6">
           <button
             onClick={() => setActiveDesign(1)}
             className={`px-4 py-2 rounded text-sm ${
-              activeDesign === 1 
-                ? 'bg-red-800 text-white' 
+              activeDesign === 1
+                ? 'bg-red-800 text-white'
                 : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
             }`}
           >
@@ -655,8 +655,8 @@ const App = () => {
           <button
             onClick={() => setActiveDesign(2)}
             className={`px-4 py-2 rounded text-sm ${
-              activeDesign === 2 
-                ? 'bg-red-800 text-white' 
+              activeDesign === 2
+                ? 'bg-red-800 text-white'
                 : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
             }`}
           >
