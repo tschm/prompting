@@ -1058,7 +1058,7 @@ def _(get_current_language, mo, translations):
 
         why_it_works_accordion = mo.accordion(
             {
-                translations['why_it_works'][get_current_language()]: mo.md(f"""
+                translations['why_it_works'][get_current_language()]: mo.md(f""" 
                 <div class="technique-why-it-works" style="padding: 15px; background-color: #000000; border-radius: 0; font-family: 'Inter', sans-serif; color: #FFFFFF; border: 2px solid #9D0208;">
                     <p style="color: #FFFFFF; font-family: 'Inter', sans-serif;">{technique_why_it_works[get_current_language()]}</p>
                 </div>
