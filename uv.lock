@@ -160,7 +160,7 @@ wheels = [
 
 [[package]]
 name = "marimo"
-version = "0.13.2"
+version = "0.13.6"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
@@ -175,15 +175,14 @@ dependencies = [
     { name = "pygments" },
     { name = "pymdown-extensions" },
     { name = "pyyaml" },
-    { name = "ruff" },
     { name = "starlette" },
     { name = "tomlkit" },
     { name = "uvicorn" },
     { name = "websockets" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/29/01/f26fda933290eaeab4a1a3f856221882c311b1ca3f755f6b4df5a4a1bd11/marimo-0.13.2.tar.gz", hash = "sha256:eaee97908b8f90ae53c1f0ddb34f75c9a29c97f683600402372287ba072e44e5", size = 10774675, upload-time = "2025-04-24T16:18:30.205Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/29/08/7d588868481a620b85917d3c5bc8d14adbf28c499d6b5e76fa7eab35d167/marimo-0.13.6.tar.gz", hash = "sha256:42ccf4489bd6389fcc1fd78833204e0c2042182eefa769733ecabedf6b51294f", size = 10835698, upload-time = "2025-05-06T16:36:19.598Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/9a/dd/d0127ed66be00796727a929158d8d15cec276364b414f49710dfef4ddbfb/marimo-0.13.2-py3-none-any.whl", hash = "sha256:173a0f4af6661407a43c3af40811c0e16ff41fd9ccae1b15cbfe52b5f3583c50", size = 11139962, upload-time = "2025-04-24T16:18:33.22Z" },
+    { url = "https://files.pythonhosted.org/packages/e5/c7/eda0a216044d55cb7bc8a6595895f03ec7e4c533a3bf78eb14ddd1d5695f/marimo-0.13.6-py3-none-any.whl", hash = "sha256:6c8cb6466602eb4501237e4009105c2f3ba6cf568cf97c6713edd339a1db593a", size = 11205948, upload-time = "2025-05-06T16:36:22.835Z" },
 ]
 
 [[package]]
@@ -275,7 +274,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "httpx", specifier = "==0.28.1" },
-    { name = "marimo", specifier = "==0.13.2" },
+    { name = "marimo", specifier = "==0.13.6" },
     { name = "pre-commit", marker = "extra == 'dev'", specifier = "==4.2.0" },
     { name = "python-dotenv", specifier = "==1.1.0" },
     { name = "ruff", marker = "extra == 'dev'", specifier = "==0.11.7" },
