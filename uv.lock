@@ -36,14 +36,14 @@ wheels = [
 
 [[package]]
 name = "click"
-version = "8.2.0"
+version = "8.2.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "colorama", marker = "sys_platform == 'win32'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/cd/0f/62ca20172d4f87d93cf89665fbaedcd560ac48b465bd1d92bfc7ea6b0a41/click-8.2.0.tar.gz", hash = "sha256:f5452aeddd9988eefa20f90f05ab66f17fce1ee2a36907fd30b05bbb5953814d", size = 235857, upload-time = "2025-05-10T22:21:03.111Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/60/6c/8ca2efa64cf75a977a0d7fac081354553ebe483345c734fb6b6515d96bbc/click-8.2.1.tar.gz", hash = "sha256:27c491cc05d968d271d5a1db13e3b5a184636d9d930f148c50b038f0d0646202", size = 286342, upload-time = "2025-05-20T23:19:49.832Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a2/58/1f37bf81e3c689cc74ffa42102fa8915b59085f54a6e4a80bc6265c0f6bf/click-8.2.0-py3-none-any.whl", hash = "sha256:6b303f0b2aa85f1cb4e5303078fadcbcd4e476f114fab9b5007005711839325c", size = 102156, upload-time = "2025-05-10T22:21:01.352Z" },
+    { url = "https://files.pythonhosted.org/packages/85/32/10bb5764d90a8eee674e9dc6f4db6a0ab47c8c4d0d83c27f7c39ac415a4d/click-8.2.1-py3-none-any.whl", hash = "sha256:61a3265b914e850b85317d0b3109c7f8cd35a670f963866005d6ef1d5175a12b", size = 102215, upload-time = "2025-05-20T23:19:47.796Z" },
 ]
 
 [[package]]
@@ -204,7 +204,7 @@ wheels = [
 
 [[package]]
 name = "marimo"
-version = "0.13.7"
+version = "0.13.11"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
@@ -224,9 +224,9 @@ dependencies = [
     { name = "uvicorn" },
     { name = "websockets" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d4/38/1a6043ad4c3ad890c3ffc62e1321c7204b8676c957847e6bb8e79ea56830/marimo-0.13.7.tar.gz", hash = "sha256:a04969e8453f166082780c40286d0d7b6950bd7564fd4e9e03e6504ff24d3a74", size = 11961032, upload-time = "2025-05-12T16:14:52.655Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/50/b1/178b8090eadb97b561d839c1b8c72f0353a02c522033e7d9736c095608f7/marimo-0.13.11.tar.gz", hash = "sha256:e83090aa51d1e95be0069e482dbb53e208f5232da9c8604c06582a42ce6e1aee", size = 11973323, upload-time = "2025-05-20T20:26:14.201Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/96/fb/7974179faba10f9649c85bdb772993675fc42e6d912f3267635c862d1081/marimo-0.13.7-py3-none-any.whl", hash = "sha256:cbf466fa819c54d9ff0a20302e8a7218e423c6c65ca1fb6225d5d3bc3a27495d", size = 12335120, upload-time = "2025-05-12T16:14:48.906Z" },
+    { url = "https://files.pythonhosted.org/packages/82/df/894eea912b7715da6879890ca1b994849310738364bc325fb28ef2719541/marimo-0.13.11-py3-none-any.whl", hash = "sha256:b91d1a2508a888488e7ec62fd3a0caefdb45b0347886bf03d426c469c6d93365", size = 12352010, upload-time = "2025-05-20T20:26:10.758Z" },
 ]
 
 [[package]]
@@ -318,7 +318,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "httpx", specifier = "==0.28.1" },
-    { name = "marimo", specifier = "==0.13.7" },
+    { name = "marimo", specifier = "==0.13.11" },
     { name = "pre-commit", marker = "extra == 'dev'", specifier = "==4.2.0" },
     { name = "python-dotenv", specifier = "==1.1.0" },
     { name = "ruff", marker = "extra == 'dev'", specifier = "==0.11.9" },
