@@ -8,14 +8,14 @@ jobs:
   pre-commit:
     runs-on: ubuntu-latest
     steps:
-      - uses: tschm/cradle/actions/pre-commit@v0.3.04
+      - uses: tschm/cradle/actions/pre-commit@v0.3.05
 
   deptry:
     runs-on: ubuntu-latest
     steps:
       - name: "Build the virtual environment"
-        uses: tschm/cradle/actions/environment@v0.3.04
+        uses: tschm/cradle/actions/environment@v0.3.05
 
-      - uses: tschm/cradle/actions/deptry@v0.3.04
+      - uses: tschm/cradle/actions/deptry@v0.3.05
         with:
           source-folder: prompting
